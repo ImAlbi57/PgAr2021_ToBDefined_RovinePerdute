@@ -2,17 +2,17 @@ package it.unibs.arnaldo.rovineperdute;
 
 public class Città {
 
-    private String id;
+    private int id;
     private String nome;
     private Coords coordinate;
 
-    public Città(String id, String nome, Coords coordinate) {
+    public Città(int id, String nome, Coords coordinate) {
         this.id = id;
         this.nome = nome;
         this.coordinate = coordinate;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -24,7 +24,7 @@ public class Città {
         return coordinate;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
