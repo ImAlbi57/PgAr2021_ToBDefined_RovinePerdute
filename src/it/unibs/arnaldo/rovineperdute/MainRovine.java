@@ -7,11 +7,11 @@ public class MainRovine {
         System.out.println("Hello mf");
 ////////////////////////////  PER IL DEBUG  ////////////////////////////////////////
         //inizializzo il costruttore della classe dandogli come parametro il testo XML da leggere
-        XMLReaderCittà xmlr = new XMLReaderCittà("PgAr_Map_10000.xml");
+        XMLReaderCity xmlr = new XMLReaderCity("PgAr_Map_10000.xml");
         //richiamo il metodo per leggere l'XML
-        ArrayList<Città> città = xmlr.read();
+        ArrayList<City> città = xmlr.read();
         //stampo i valori dell'arraylist ottenuti
-        xmlr.PrintCittà();
+        xmlr.PrintCity();
 ////////////////////////////////////////////////////////////////////////////////////
     }
 }

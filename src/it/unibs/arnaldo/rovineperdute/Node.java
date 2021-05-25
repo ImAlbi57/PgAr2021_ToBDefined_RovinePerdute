@@ -1,16 +1,15 @@
 package it.unibs.arnaldo.rovineperdute;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Node {
-    private Città city;
+    private City city;
     private HashMap<Node, Double> links;
     private Node source;
     private double totWeight;
 
     //Metodo costruttore
-    public Node(Città city){
+    public Node(City city){
         this.city = city;
         this.links = new HashMap<>();
     }
@@ -30,7 +29,7 @@ public class Node {
     }
 
     //Getters
-    public Città getCity() {
+    public City getCity() {
         return this.city;
     }
     public Node getSource() {

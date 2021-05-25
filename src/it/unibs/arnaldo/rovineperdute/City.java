@@ -1,12 +1,12 @@
 package it.unibs.arnaldo.rovineperdute;
 
-public class Città {
+public class City {
 
     private int id;
     private String nome;
     private Coords coordinate;
 
-    public Città(int id, String nome, Coords coordinate) {
+    public City(int id, String nome, Coords coordinate) {
         this.id = id;
         this.nome = nome;
         this.coordinate = coordinate;
