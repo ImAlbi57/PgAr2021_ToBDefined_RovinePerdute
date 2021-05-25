@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b494b3b-5d8f-4e60-af41-79bea4ec4c38" name="Default Changelist" comment="Messo l'id intero invece di String">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Luca.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/arnaldo/rovineperdute/Graph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/arnaldo/rovineperdute/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/arnaldo/rovineperdute/Mode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibs/arnaldo/rovineperdute/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/arnaldo/rovineperdute/Graph.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +15,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -41,13 +41,15 @@
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -62,6 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1621874574954</updated>
       <workItem from="1621874576440" duration="8438000" />
+      <workItem from="1621932812624" duration="330000" />
     </task>
     <task id="LOCAL-00001" summary="Fixati i file sbagliati">
       <created>1621874608776</created>
@@ -93,6 +96,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixati i file sbagliati" />

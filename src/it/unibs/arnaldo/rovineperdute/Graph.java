@@ -3,8 +3,6 @@ package it.unibs.arnaldo.rovineperdute;
 import java.util.HashSet;
 
 public class Graph {
-    public static final String MODE_DISTANCE = "DISTANCE";
-    public static final String MODE_HEIGHT = "HEIGHT";
     private HashSet<Node> nodes;
 
     public Graph(){
@@ -20,11 +18,11 @@ public class Graph {
     }
 
     //Provo ad implementare A* (A-asterisco)
-    public Graph getBestPath(String mode, Node start, Node target){
+    public Graph getBestPath(NavigationMode mode, Node start, Node target){
         Graph result = new Graph();
 
         //Controllo la modalità
-        if(!mode.equals(MODE_DISTANCE) && !mode.equals(MODE_HEIGHT))
+        if(mode != NavigationMode.DISTANCE && mode != NavigationMode.HEIGHT)
             return null;
 
         HashSet<Node> visited = new HashSet<>();
