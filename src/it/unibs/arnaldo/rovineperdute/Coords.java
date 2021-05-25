@@ -21,6 +21,7 @@ public class Coords {
     public double getX() {
         return x;
     }
+
     public double getY() {
         return y;
     }
@@ -36,7 +37,6 @@ public class Coords {
     public void setY(double y) {
         this.y = y;
     }
-
     public void setH(double h) {
         this.h = h;
     }
@@ -78,6 +78,16 @@ public class Coords {
         // [+-]? = possibili "+" e "-", [0-9]+ = 1+ corrispondenze, gruppo dopo il + opzionale per i decimali (con virgola o punto)
         return Pattern.matches("^[-+]?[0-9]+([\\,|\\.][0-9]+)?$",parts[0]) && Pattern.matches("^[-+]?[0-9]+([\\,|\\.][0-9]+)?$",parts[1]) && Pattern.matches("^[-+]?[0-9]+([\\,|\\.][0-9]+)?$", parts[2]);
 
-
     }
+
+    //metodo per calcolare la distanza euclidea tra due punti
+    public double calcolaDistanzaEuclidea(Coords p) {
+        return Math.sqrt(Math.pow((p.getX() - this.x), 2) + Math.pow((p.getY() - this.y), 2));
+    }
+
+    //metodo per calcolare la differenza di altitudine
+    public double calcolaDifferenzaAltitudine(Coords p) {
+        return Math.abs((p.getH() - this.h));
+    }
+
 }
