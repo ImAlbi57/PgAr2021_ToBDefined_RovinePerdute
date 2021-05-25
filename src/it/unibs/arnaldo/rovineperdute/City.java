@@ -6,6 +6,10 @@ public class City {
     private String nome;
     private Coords coordinate;
 
+    public City(int id){
+        this.id = id;
+    }
+
     public City(int id, String nome, Coords coordinate) {
         this.id = id;
         this.nome = nome;

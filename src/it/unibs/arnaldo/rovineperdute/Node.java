@@ -1,28 +1,28 @@
 package it.unibs.arnaldo.rovineperdute;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-public class Node {
+public class Node implements Comparable<Node> {
     private City city;
-    private HashMap<Node, Double> links;
-    private Node source;
-    private double totWeight;
+    private ArrayList<Node> links;
+    private double distance;
+
+    //Metodo costruttore
+    public Node(Node node, double distance) {
+        this.city = node.getCity();
+        this.links = new ArrayList<>(node.getLinks());
+        this.distance = distance;
+    }
 
     //Metodo costruttore
     public Node(City city){
         this.city = city;
-        this.links = new HashMap<>();
+        this.links = new ArrayList<>();
     }
 
     //Metodi per la gestione del nodo
-    public void setSource(Node source){
-        this.source = source;
-    }
-    public void setTotWeight(double totWeight) {
-        this.totWeight = totWeight;
-    }
-    public void addLink(Node node, double weight){
-        this.links.put(node, weight);
+    public void addLink(Node node){
+        this.links.add(node);
     }
     public void removeLink(Node node){
         this.links.remove(node);
@@ -32,15 +32,29 @@ public class Node {
     public City getCity() {
         return this.city;
     }
-    public Node getSource() {
-        return this.source;
+    public ArrayList<Node> getLinks(){
+        return links;
     }
-    public double getTotWeight() {
-        return this.totWeight;
+    public double getDistance() {
+        return distance;
     }
-    public double getLinkedNodeWeight(Node node){
-        return this.links.get(node);
+
+    //Setters
+    public void setCity(City city) {
+        this.city = city;
     }
+    public void setLinks(ArrayList<Node> links) {
+        this.links = links;
+    }
+
+    public double calcDistance(NavigationMode mode, Node node){
+        if(mode == NavigationMode.DISTANCE)
+            return this.getCity().getCoordinate().calcolaDistanzaEuclidea(node.getCity().getCoordinate());
+        if(mode == NavigationMode.HEIGHT)
+            return this.getCity().getCoordinate().calcolaDifferenzaAltitudine(node.getCity().getCoordinate());
+        return -0.0;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -60,5 +74,20 @@ public class Node {
     @Override
     public int hashCode() {
         return this.getCity().getId();
+    }
+
+    @Override
+    public int compareTo(Node o) {
+       return Double.compare(this.distance, o.getDistance());
+    }
+
+    @Override
+    public String toString() {
+        String str = this.getCity().getId() + ": ";
+        for (Node node : links) {
+            str += "[" + node.getCity().getId() + "] ";
+        }
+
+        return str;
     }
 }

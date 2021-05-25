@@ -1,27 +1,41 @@
 package it.unibs.arnaldo.rovineperdute;
 
+import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamReader;
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 
-public class XMLReaderCity extends GestoreXMLReader {
+public class XMLReaderCity {
+    private XMLInputFactory xmlif = null;
+    private XMLStreamReader xmlr = null;
+    private String path;
+
+    private Graph graph;
+
     /**
-     * Richiama il costruttore della superclasse e gli passa il path
+     * Istanzia lo StreamReader e gestisce le eccezioni
      * @param path percorso del file
      */
     public XMLReaderCity(String path) {
-        super(path);
+        this.path = path;
+        this.graph = new Graph();
+        try {
+            xmlif = XMLInputFactory.newInstance();
+            xmlr = xmlif.createXMLStreamReader(path, new FileInputStream(path));
+        } catch (Exception e) {
+            System.out.println("Errore nell'inizializzazione del reader:");
+            System.out.println(e.getMessage());
+        }
     }
-
-    //inizializzo l'arraylist fuori dal metodo read() solo perchè lo uso anche nel metodo printCittà
-    ArrayList<City> cities = new ArrayList<City>();
 
     /**
      * Legge i dati delle città e li inserisce nell'ArrayList
      * @return l'ArrayList città
      */
-    public ArrayList<City> read() {
-
-//        ArrayList<Integer> collegamenti = new ArrayList<>();
+    public Graph read() {
+        ArrayList<Node> links = new ArrayList<>();
         //variabili
         int id = -1;
         String nome = "";
@@ -41,12 +55,19 @@ public class XMLReaderCity extends GestoreXMLReader {
                         //ricavo il nome dell'elemento iniziale
                         String src = xmlr.getLocalName();
 
-                        //se l'elemento iniziale corrisponde a "city"
-                        if(src.equals("city"))
-                            //ciclo for per scorrere il numero di attributi presenti nell'elemento iniziale
+                        if(src.equals("map")){
                             for (int i = 0; i < xmlr.getAttributeCount(); i++){
+                                if(xmlr.getAttributeLocalName(i).equals("size"))
+                                    initGraph(Integer.parseInt(xmlr.getAttributeValue(i)));
+                            }
+                        }
+
+                        //se l'elemento iniziale corrisponde a "city"
+                        if(src.equals("city")) {
+                            //ciclo for per scorrere il numero di attributi presenti nell'elemento iniziale
+                            for (int i = 0; i < xmlr.getAttributeCount(); i++) {
                                 //ricavo il nome dell'attributo
-                                switch(xmlr.getAttributeLocalName(i)){
+                                switch (xmlr.getAttributeLocalName(i)) {
                                     //caso dell'attributo id
                                     case "id":
                                         id = Integer.parseInt(xmlr.getAttributeValue(i));
@@ -69,31 +90,34 @@ public class XMLReaderCity extends GestoreXMLReader {
                                         break;
                                 }
                             }
-                        //genero una nuova coordinata con i valori di x, y e h
-                        coordinate = new Coords(x, y, h);
+                            //genero una nuova coordinata con i valori di x, y e h
+                            coordinate = new Coords(x, y, h);
+                        }
+
+                        if(src.equals("link")){
+                            links.add(graph.getNode(Integer.parseInt(xmlr.getAttributeValue(0))));
+                        }
 
                         //passo all'evento successivo
                         xmlr.next();
-
-//aspettare di creare un hashmap per poter collegare ad una città il proprio arraylist di collegamenti e poterlo cancellare al termine di ogni ciclo
-
-//                        if(src.equals("link")){
-//                            collegamenti.add(Integer.parseInt(xmlr.getAttributeValue(0)));
-//                        }
                         break;
-                    //elemento finale
+
+
+                        //elemento finale
                     case XMLStreamConstants.END_ELEMENT:
                         //controllo che il ciclo abbia realmente acquisito dei valori
                         if(xmlr.getLocalName().equals("city") && id != -1 && !nome.equals("") && x!=-1 && y!= -1 && h != -1 /*&& !collegamenti.equals("")*/) {
                             //creo un oggetto città con i valori acquisiti e li aggiungo ad un arraylist
-                            cities.add(new City(id, nome, coordinate));
+                            graph.getNode(id).setCity(new City(id, nome, coordinate));
+                            graph.getNode(id).setLinks(links);
 
                             //riporto le variabili ai loro valori originali
                             id = -1;
                             nome = "";
                             coordinate = new Coords(-1,-1,-1);
+                            links = new ArrayList<>();
                         }
-                    //commenti
+                        //commenti
                     case XMLStreamConstants.COMMENT: break;
                     //caratteri
                     case XMLStreamConstants.CHARACTERS: break;
@@ -103,13 +127,19 @@ public class XMLReaderCity extends GestoreXMLReader {
             }
         }
         catch(Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
-        //ritorno l'arraylist
-        return cities;
+        //ritorno il grafo
+        return graph;
     }
 
+    private void initGraph(int dim) {
+        for(int i=0; i < dim; i++){
+            graph.addNode(new Node(new City(i)));
+        }
+    }
 
+    /*
     //Metodo per stampare tutti gli oggetti Città ricavati dall'XML(per DEBUG)
     public void PrintCity() {
         for(City ct: cities) {
@@ -118,5 +148,5 @@ public class XMLReaderCity extends GestoreXMLReader {
                     + "\ncoordinate = (" + ct.getCoordinate().getX() + "; " + ct.getCoordinate().getY()+"; "+ct.getCoordinate().getH()+ ")\n");
         }
     }
-
+    */
 }
