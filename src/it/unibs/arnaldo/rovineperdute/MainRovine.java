@@ -13,7 +13,36 @@ public class MainRovine {
         //stampo i valori dell'arraylist ottenuti
         mappa.printNodes();
         System.out.println();
-        System.out.println(mappa.getBestPath(NavigationMode.DISTANCE, mappa.getNode(0), mappa.getNode(4)));
+
+        /*
+        for (Node iNode : mappa.getNodes()) {
+            for (Node jNode : iNode.getLinks()) {
+                System.out.println(iNode.getCity().getId() + "-" + jNode.getCity().getId() + ": " + iNode.getCity().getCoordinate().calcolaDifferenzaAltitudine(jNode.getCity().getCoordinate()));
+            }
+        }*/
+
+        ArrayList<Node> tonathiuh = mappa.getBestPath(NavigationMode.DISTANCE, mappa.getNode(0), mappa.getNode(9999));
+        ArrayList<Node> metzetli = mappa.getBestPath(NavigationMode.HEIGHTDIFFERENCE, mappa.getNode(0), mappa.getNode(9999));
+
+        printPathDEBUG(tonathiuh);
+        System.out.println();
+        System.out.println();
+        printPathDEBUG(metzetli);
+
 ////////////////////////////////////////////////////////////////////////////////////
+    }
+
+    private static void printPathDEBUG(ArrayList<Node> path) {
+        int i=1;
+        System.out.print("CAMPO BASE ->");
+        for (Node node : path) {
+            if(++i % 10 == 0)
+                System.out.println();
+            System.out.print(node.getCity().getId() + "\t->\t");
+        }
+        int countNodi = path.size();
+        System.out.println("ANTICHE ROVINE");
+        double carburante = path.get(countNodi-1).getDistance();
+        System.out.printf("Numero di città percorse: %s, carburante consumato: %s", countNodi, carburante);
     }
 }

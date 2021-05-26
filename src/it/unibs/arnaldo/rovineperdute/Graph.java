@@ -9,6 +9,9 @@ public class Graph {
         this.nodes = new ArrayList<>();
     }
 
+    public ArrayList<Node> getNodes() {
+        return nodes;
+    }
     public Node getNode(int index) {
         return nodes.get(index);
     }
@@ -29,7 +32,7 @@ public class Graph {
     public ArrayList<Node> getBestPath(NavigationMode mode, Node start, Node target){
 
         //Controllo la modalità
-        if(mode != NavigationMode.DISTANCE && mode != NavigationMode.HEIGHT)
+        if(mode != NavigationMode.DISTANCE && mode != NavigationMode.HEIGHTDIFFERENCE)
             return null;
 
         PriorityQueue<Node> OPEN = new PriorityQueue<>();

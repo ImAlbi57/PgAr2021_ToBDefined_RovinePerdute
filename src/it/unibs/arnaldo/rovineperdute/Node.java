@@ -50,7 +50,7 @@ public class Node implements Comparable<Node> {
     public double calcDistance(NavigationMode mode, Node node){
         if(mode == NavigationMode.DISTANCE)
             return this.getCity().getCoordinate().calcolaDistanzaEuclidea(node.getCity().getCoordinate());
-        if(mode == NavigationMode.HEIGHT)
+        if(mode == NavigationMode.HEIGHTDIFFERENCE)
             return this.getCity().getCoordinate().calcolaDifferenzaAltitudine(node.getCity().getCoordinate());
         return -0.0;
     }
