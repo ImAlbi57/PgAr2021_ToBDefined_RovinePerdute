@@ -54,6 +54,11 @@ public class GestoreXMLWriter {
 //	            }
 //	            chiudiTag();
 //	            chiudiTag();
+            apriTagConAttr("route2", "team2", ""/*route.getTeam2()nome del team*/, "cost2", ""/*+route.getCost2()benzina utilizzata*/, "cities2", ""/*+route.getCities2()numero di città attraversate*/);
+            for(City ct : cities) {
+                writeCity(ct);
+            }
+            chiudiTag();
 
             chiudiTag();
             chiudiXML();
