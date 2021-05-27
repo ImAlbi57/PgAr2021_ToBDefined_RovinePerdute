@@ -55,6 +55,6 @@ public class MainRovine {
         int countNodi = path.size();
         System.out.println("ANTICHE ROVINE");
         double carburante = path.get(countNodi-1).getDistance();
-        System.out.printf("Numero di città percorse: %s, carburante consumato: %s", countNodi, carburante);
+        System.out.printf("Numero di città percorse: %s, carburante consumato: %.2s", countNodi, carburante);
     }
 }

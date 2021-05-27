@@ -4,6 +4,7 @@ import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class GestoreXMLWriter {
@@ -38,7 +39,7 @@ public class GestoreXMLWriter {
 
             iniziaXML();
             apriTag("output");
-            apriTagConAttr("route", "team", firstTeam.getVeicolo().getName(), "cost", ""+firstTeam.getFuel(), "cities", ""+firstTeam.getCities());
+            apriTagConAttr("route", "team", firstTeam.getVeicolo().getName(), "cost", new DecimalFormat("#.##").format(firstTeam.getFuel()), "cities", ""+firstTeam.getCities());
             for(Node n : firstTeam.getPath()) {
                 writeCity(n.getCity());
             }
@@ -57,7 +58,7 @@ public class GestoreXMLWriter {
 //	            }
 //	            chiudiTag();
 //	            chiudiTag();
-            apriTagConAttr("route", "team", secondTeam.getVeicolo().getName(), "cost", ""+secondTeam.getFuel(), "cities", ""+secondTeam.getCities());
+            apriTagConAttr("route", "team", secondTeam.getVeicolo().getName(), "cost", new DecimalFormat("#.##").format(secondTeam.getFuel()), "cities", ""+secondTeam.getCities());
             for(Node n : secondTeam.getPath()) {
                 writeCity(n.getCity());
             }
