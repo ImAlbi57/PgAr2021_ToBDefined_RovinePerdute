@@ -29,6 +29,12 @@ public class MainRovine {
         System.out.println();
         printPathDEBUG(metzetli);
 
+
+        //PER DEBUG DELLA SCRITTURA DEL FILE XML
+        Route route = new Route("ciao", 33.3, 7);
+        GestoreXMLWriter xmlw = new GestoreXMLWriter("outputProva.xml");
+        xmlw.scriviXML(route, /*cities*/ mappa);
+        System.out.println("Siuuuuuum");
 ////////////////////////////////////////////////////////////////////////////////////
     }
 

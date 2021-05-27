@@ -31,12 +31,12 @@ public class GestoreXMLWriter {
      //* @param route oggetto contenente il nome del team, il carburante utilizzato e il numero di città percorse
      * @param cities arraylist contenente le città che verranno attraversate durante il viaggio
      */
-    public void scriviXML(/*Route route,*/ ArrayList<City> cities) {
+    public void scriviXML(Route route, /*ArrayList<City> cities*/Graph mappa) {
         try {
             iniziaXML();
             apriTag("output");
-            apriTagConAttr("route", "team", ""/*route.getTeam()nome del team*/, "cost", ""/*+route.getCost()benzina utilizzata*/, "cities", ""/*+route.getCities()numero di città attraversate*/);
-            for(City ct : cities) {
+            apriTagConAttr("route", "team", ""+ route.getTeam()/*nome del team*/, "cost", ""+route.getCost()/*benzina utilizzata*/, "cities", ""+route.getCities()/*numero di città attraversate*/);
+            for(City ct : /*cities*/ mappa) {
                 writeCity(ct);
             }
             chiudiTag();
