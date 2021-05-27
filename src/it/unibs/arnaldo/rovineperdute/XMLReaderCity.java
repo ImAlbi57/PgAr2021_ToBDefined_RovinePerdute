@@ -5,12 +5,10 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class XMLReaderCity {
-    private XMLInputFactory xmlif = null;
-    private XMLStreamReader xmlr = null;
-    private String path;
+    private XMLStreamReader xmlr;
+    private final String path;
 
     private Graph graph;
 
@@ -22,7 +20,7 @@ public class XMLReaderCity {
         this.path = path;
         this.graph = new Graph();
         try {
-            xmlif = XMLInputFactory.newInstance();
+            XMLInputFactory xmlif = XMLInputFactory.newInstance();
             xmlr = xmlif.createXMLStreamReader(path, new FileInputStream(path));
         } catch (Exception e) {
             System.out.println("Errore nell'inizializzazione del reader:");
@@ -103,7 +101,7 @@ public class XMLReaderCity {
                         break;
 
 
-                        //elemento finale
+                    //elemento finale
                     case XMLStreamConstants.END_ELEMENT:
                         //controllo che il ciclo abbia realmente acquisito dei valori
                         if(xmlr.getLocalName().equals("city") && id != -1 && !nome.equals("") && x!=-1 && y!= -1 && h != -1 /*&& !collegamenti.equals("")*/) {

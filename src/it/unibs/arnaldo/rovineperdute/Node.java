@@ -20,14 +20,6 @@ public class Node implements Comparable<Node> {
         this.links = new ArrayList<>();
     }
 
-    //Metodi per la gestione del nodo
-    public void addLink(Node node){
-        this.links.add(node);
-    }
-    public void removeLink(Node node){
-        this.links.remove(node);
-    }
-
     //Getters
     public City getCity() {
         return this.city;
@@ -78,7 +70,7 @@ public class Node implements Comparable<Node> {
 
     @Override
     public int compareTo(Node o) {
-       return Double.compare(this.distance, o.getDistance());
+        return Double.compare(this.distance, o.getDistance());
     }
 
     @Override

@@ -4,44 +4,46 @@ import java.util.ArrayList;
 
 public class MainRovine {
     public static void main(String[] args) {
-        System.out.println("Hello mf");
-////////////////////////////  PER IL DEBUG  ////////////////////////////////////////
+        System.out.println("Benvenuto!");
+
+        //////  PER I BENCHMARK  //////
+        BenchMark.start();
+        ///////////////////////////////
+
+
         //inizializzo il costruttore della classe dandogli come parametro il testo XML da leggere
-        XMLReaderCity xmlr = new XMLReaderCity("PgAr_Map_10000.xml");
+        XMLReaderCity xmlr = new XMLReaderCity(GestoreStringhe.MAPPA_10000);
         //richiamo il metodo per leggere l'XML
         Graph mappa = xmlr.read();
         //stampo i valori dell'arraylist ottenuti
         //mappa.printNodes();
+        //mappa.printNodesWithLinks();
         System.out.println();
 
-        /*
-        for (Node iNode : mappa.getNodes()) {
-            for (Node jNode : iNode.getLinks()) {
-                System.out.println(iNode.getCity().getId() + "-" + jNode.getCity().getId() + ": " + iNode.getCity().getCoordinate().calcolaDifferenzaAltitudine(jNode.getCity().getCoordinate()));
-            }
-        }*/
 
+        //POSSIBILE MODIFICA [Veicolo -> non abstract]
+        //Route tonathiuh = new Route(new Veicolo("Tonatiuh", NavigationMode.DISTANCE));
+        //Route metzetli = new Route(new Veicolo("Metztli", NavigationMode.HEIGHTDIFFERENCE));
         Route tonathiuh = new Route(new VeicoloTonatiuh("Tonatiuh"));
         Route metzetli = new Route(new VeicoloMetztli("Metztli"));
 
         tonathiuh.startRoute(mappa);
         metzetli.startRoute(mappa);
 
-        //printPathDEBUG(tonathiuh);
+        //printPathDEBUG(tonathiuh.getPath());
         //System.out.println();
         //System.out.println();
-        //printPathDEBUG(metzetli);
+        //printPathDEBUG(metzetli.getPath());
 
         GestoreXMLWriter xmlw = new GestoreXMLWriter("out.xml");
         xmlw.scriviXML(tonathiuh, metzetli);
 
 
-        ////PER DEBUG DELLA SCRITTURA DEL FILE XML
-        //Route route = new Route("ciao", 33.3, 7);
-        //GestoreXMLWriter xmlw = new GestoreXMLWriter("outputProva.xml");
-        //xmlw.scriviXML(route, /*cities*/ mappa);
-        //System.out.println("Siuuuuuum");
-////////////////////////////////////////////////////////////////////////////////////
+        //////  PER I BENCHMARK  //////
+        BenchMark.end();
+        ///////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////////////////
     }
 
     private static void printPathDEBUG(ArrayList<Node> path) {
@@ -55,6 +57,6 @@ public class MainRovine {
         int countNodi = path.size();
         System.out.println("ANTICHE ROVINE");
         double carburante = path.get(countNodi-1).getDistance();
-        System.out.printf("Numero di città percorse: %s, carburante consumato: %.2s", countNodi, carburante);
+        System.out.printf("Numero di città percorse: %s, carburante consumato: %s", countNodi, carburante);
     }
 }

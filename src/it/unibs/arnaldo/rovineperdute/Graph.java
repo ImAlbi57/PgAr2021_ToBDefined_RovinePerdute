@@ -30,62 +30,85 @@ public class Graph {
             System.out.println(node);
         }
     }
+    public void printNodesWithLinks(){
+        for (Node iNode : nodes) {
+            for (Node jNode : iNode.getLinks()) {
+                System.out.println(iNode.getCity().getId() + "-" + jNode.getCity().getId() + ": " + iNode.getCity().getCoordinate().calcolaDifferenzaAltitudine(jNode.getCity().getCoordinate()));
+            }
+        }
+    }
 
     //Provo ad implementare A* (A-asterisco)
     public ArrayList<Node> getBestPath(NavigationMode mode, Node start, Node target){
 
-        //Controllo la modalità
-        if(mode != NavigationMode.DISTANCE && mode != NavigationMode.HEIGHTDIFFERENCE)
-            return null;
+        ////Controllo la modalità [CONTROLLO INUTILE]
+        //if(mode != NavigationMode.DISTANCE && mode != NavigationMode.HEIGHTDIFFERENCE)
+        //    return null;
 
-        PriorityQueue<Node> OPEN = new PriorityQueue<>();
-        HashSet<Node> CLOSED = new HashSet<>();
-        HashMap<Node, Double> DISTANCE = new HashMap<>();
-        HashMap<Node, Node> PARENTS = new HashMap<>();
+        PriorityQueue<Node> nodiAperti = new PriorityQueue<>();
+        HashSet<Node> nodiChiusi = new HashSet<>();
+        HashMap<Node, Double> distanze = new HashMap<>();
+        HashMap<Node, Node> nodiGenitori = new HashMap<>();
 
-        OPEN.add(new Node(start, 0.0));
-        DISTANCE.put(start, 0.0);
-        PARENTS.put(start, null);
+        //Aggiungo il nodo di partenza
+        nodiAperti.add(new Node(start, 0.0));
+        distanze.put(start, 0.0);
+        nodiGenitori.put(start, null);
 
-        while(!OPEN.isEmpty()){
-            Node currNode = OPEN.remove();
+        while(!nodiAperti.isEmpty()){
+            Node currNode = nodiAperti.remove();
 
+            //Se ho raggiunto le rovine ricostruisci il percorso
             if(currNode.equals(target))
-                return reconstructPath(currNode, PARENTS);
+                return reconstructPath(currNode, nodiGenitori);
 
-            if(CLOSED.contains(currNode))
+            //Se uno dei nodi chiusi contiene il nodo corrente allora passo al prossimo ciclo
+            if(nodiChiusi.contains(currNode))
                 continue;
 
-            CLOSED.add(currNode);
+            nodiChiusi.add(currNode);
 
+            //Scorro ogni collegamento del nodo
             for(Node link : currNode.getLinks()){
-                if(CLOSED.contains(link))
+                //Se è già contenuto nei nodi scartati passo direttamente al ciclo successivo
+                if(nodiChiusi.contains(link))
                     continue;
 
-                //Se NON fosse collegato (?)
-                double linkDist = DISTANCE.get(currNode) + currNode.calcDistance(mode, link);
+                //calcolo la distanza tra nodo corrente e nodo collegato
+                double linkDist = distanze.get(currNode) + currNode.calcDistance(mode, link);
 
-                if(!DISTANCE.containsKey(link) || DISTANCE.get(link) > linkDist) {
-                    DISTANCE.put(link, linkDist);
-                    PARENTS.put(link, currNode);
-                    //distanza + funzione euristica (distanza figlio -> target)
-                    OPEN.add(new Node(link, linkDist + link.calcDistance(mode, target)));
+                if(!distanze.containsKey(link) || distanze.get(link) > linkDist) {
+                    distanze.put(link, linkDist);
+                    nodiGenitori.put(link, currNode);
+
+                    //distanza "pesata": distanza + funzione euristica (distanza figlio -> target)
+                    nodiAperti.add(new Node(link, linkDist + link.calcDistance(mode, target)));
                 }
             }
         }
 
+
         return new ArrayList<>();
     }
 
+    /***
+     * Metodo che ricostruisce il percorso partendo dall'arrivo e poi ritorna il percorso "invertito"
+     * @param current nodo corrente (nodo finale)
+     * @param cameFrom hashmap con i link tra nodi (nodi genitori)
+     * @return ArrayList<Node> contenente il percorso ottimale
+     */
     private static ArrayList<Node> reconstructPath(Node current, HashMap<Node, Node> cameFrom){
         ArrayList<Node> path = new ArrayList<>();
         Node currNode = current;
 
+        //Aggiungo a path il nodo corrente e poi scorro "all'indietro" tramite l'HashMap cameFrom
         while (currNode != null){
+            //currNode.setLinks(null);
             path.add(currNode);
             currNode = cameFrom.get(currNode);
         }
 
+        //Inverto il percorso
         Collections.reverse(path);
 
         return path;
