@@ -15,6 +15,9 @@ public class Graph {
     public Node getNode(int index) {
         return nodes.get(index);
     }
+    public int getNodeNumber(){
+        return nodes.size();
+    }
 
     public void addNode(Node node){
         this.nodes.add(node);

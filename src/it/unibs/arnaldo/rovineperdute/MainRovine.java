@@ -11,7 +11,7 @@ public class MainRovine {
         //richiamo il metodo per leggere l'XML
         Graph mappa = xmlr.read();
         //stampo i valori dell'arraylist ottenuti
-        mappa.printNodes();
+        //mappa.printNodes();
         System.out.println();
 
         /*
@@ -21,20 +21,26 @@ public class MainRovine {
             }
         }*/
 
-        ArrayList<Node> tonathiuh = mappa.getBestPath(NavigationMode.DISTANCE, mappa.getNode(0), mappa.getNode(9999));
-        ArrayList<Node> metzetli = mappa.getBestPath(NavigationMode.HEIGHTDIFFERENCE, mappa.getNode(0), mappa.getNode(9999));
+        Route tonathiuh = new Route(new VeicoloTonatiuh("Tonatiuh"));
+        Route metzetli = new Route(new VeicoloMetztli("Metztli"));
 
-        printPathDEBUG(tonathiuh);
-        System.out.println();
-        System.out.println();
-        printPathDEBUG(metzetli);
+        tonathiuh.startRoute(mappa);
+        metzetli.startRoute(mappa);
+
+        //printPathDEBUG(tonathiuh);
+        //System.out.println();
+        //System.out.println();
+        //printPathDEBUG(metzetli);
+
+        GestoreXMLWriter xmlw = new GestoreXMLWriter("out.xml");
+        xmlw.scriviXML(tonathiuh, metzetli);
 
 
-        //PER DEBUG DELLA SCRITTURA DEL FILE XML
-        Route route = new Route("ciao", 33.3, 7);
-        GestoreXMLWriter xmlw = new GestoreXMLWriter("outputProva.xml");
-        xmlw.scriviXML(route, /*cities*/ mappa);
-        System.out.println("Siuuuuuum");
+        ////PER DEBUG DELLA SCRITTURA DEL FILE XML
+        //Route route = new Route("ciao", 33.3, 7);
+        //GestoreXMLWriter xmlw = new GestoreXMLWriter("outputProva.xml");
+        //xmlw.scriviXML(route, /*cities*/ mappa);
+        //System.out.println("Siuuuuuum");
 ////////////////////////////////////////////////////////////////////////////////////
     }
 

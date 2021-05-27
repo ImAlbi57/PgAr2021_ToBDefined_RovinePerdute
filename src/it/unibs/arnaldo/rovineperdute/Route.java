@@ -1,27 +1,38 @@
 package it.unibs.arnaldo.rovineperdute;
 
+import java.util.ArrayList;
+
 public class Route {
-    //variabili inizializzate per prova
-    private String team = "ciao";
-    private double cost = 33.3;
-    private int cities = 7;
+    private final Veicolo veicolo;
+    private ArrayList<Node> path;
+    private int cities;
 
 
     //costruttore di route
-    public Route(String _team, double _cost, int _cities) {
-        this.team = _team;
-        this.cost = _cost;
-        this.cities = _cities;
+    public Route(Veicolo veicolo) {
+        this.veicolo = veicolo;
     }
 
+    //Metodo per calcolare la rotta
+    public void startRoute(Graph mappa){
+        System.out.printf("Team %s: calcolo la rotta... ", veicolo.getName());
+        this.path = mappa.getBestPath(veicolo.getMode(), mappa.getNode(0), mappa.getNode(mappa.getNodeNumber()-1));
+        this.cities = path.size();
+        this.veicolo.setCarburante(path.get(this.cities-1).getDistance());
+        System.out.println("Pronti per la partenza!");
+    }
 
     //GETTERS
-    public String getTeam() {
-        return team;
+    public Veicolo getVeicolo() {
+        return veicolo;
     }
 
-    public double getCost() {
-        return cost;
+    public ArrayList<Node> getPath() {
+        return path;
+    }
+
+    public double getFuel() {
+        return this.veicolo.getCarburante();
     }
 
     public int getCities() {

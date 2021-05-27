@@ -29,15 +29,18 @@ public class GestoreXMLWriter {
      * Metodo per la scrittura dell'XML completo,
      * richiama i metodi creati in seguito, usati opportunamente e con dei cicli
      //* @param route oggetto contenente il nome del team, il carburante utilizzato e il numero di città percorse
-     * @param cities arraylist contenente le città che verranno attraversate durante il viaggio
+     * @param firstTeam arraylist contenente le città attraversate dal primo team
+     * @param secondTeam arraylist contenente le città attraversate dal secondo team
      */
-    public void scriviXML(Route route, /*ArrayList<City> cities*/Graph mappa) {
+    public void scriviXML(Route firstTeam, Route secondTeam) {
         try {
+            System.out.print("Inizio scrittura della mappa per gli esploratori... ");
+
             iniziaXML();
             apriTag("output");
-            apriTagConAttr("route", "team", ""+ route.getTeam()/*nome del team*/, "cost", ""+route.getCost()/*benzina utilizzata*/, "cities", ""+route.getCities()/*numero di città attraversate*/);
-            for(City ct : /*cities*/ mappa) {
-                writeCity(ct);
+            apriTagConAttr("route", "team", firstTeam.getVeicolo().getName(), "cost", ""+firstTeam.getFuel(), "cities", ""+firstTeam.getCities());
+            for(Node n : firstTeam.getPath()) {
+                writeCity(n.getCity());
             }
             chiudiTag();
 
@@ -54,14 +57,16 @@ public class GestoreXMLWriter {
 //	            }
 //	            chiudiTag();
 //	            chiudiTag();
-            apriTagConAttr("route2", "team2", ""/*route.getTeam2()nome del team*/, "cost2", ""/*+route.getCost2()benzina utilizzata*/, "cities2", ""/*+route.getCities2()numero di città attraversate*/);
-            for(City ct : cities) {
-                writeCity(ct);
+            apriTagConAttr("route", "team", secondTeam.getVeicolo().getName(), "cost", ""+secondTeam.getFuel(), "cities", ""+secondTeam.getCities());
+            for(Node n : secondTeam.getPath()) {
+                writeCity(n.getCity());
             }
             chiudiTag();
 
             chiudiTag();
             chiudiXML();
+
+            System.out.print("Fine! Buon viaggio!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -131,12 +136,15 @@ public class GestoreXMLWriter {
      */
     private void writeCity(City ct) throws XMLStreamException {
         tabula(nTabs++);
-        xmlw.writeStartElement("city");
+        xmlw.writeEmptyElement("city");
         xmlw.writeAttribute("id", ""+ct.getId());
         xmlw.writeAttribute("name", ""+ct.getNome());
+        //aCapo();
+        //writeSimpleTag("name", ct.getNome());
+        //chiudiTag();
+        //xmlw.writeEndElement();
+        nTabs--;
         aCapo();
-//	        writeSimpleTag("name", ct.getNome());
-        chiudiTag();
     }
 
     /**
