@@ -1,7 +1,15 @@
 package it.unibs.arnaldo.rovineperdute;
 
+/***
+ *
+ * @author ToBdefined
+ */
 public class VeicoloTonatiuh extends Veicolo{
 
+    /***
+     * Costruttore di veicoloTonatiuh
+     * @param name
+     */
     //costruttore
     public VeicoloTonatiuh(String name) {
         super(name, NavigationMode.DISTANCE);

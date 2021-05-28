@@ -2,34 +2,74 @@ package it.unibs.arnaldo.rovineperdute;
 
 import java.util.*;
 
+/***
+ *
+ * @author ToBdefined
+ */
 public class Graph {
+
     private ArrayList<Node> nodes;
 
+
+    /***
+     * Costruttore di Graph
+     */
     public Graph(){
         this.nodes = new ArrayList<>();
     }
 
+
+    //GETTERS
+    /***
+     * Getter di nodes
+     * @return nodes
+     */
     public ArrayList<Node> getNodes() {
         return nodes;
     }
+
+    /***
+     * Metodo per ricavare un node dall'arraylist attraverso un indice
+     * @param index, cioè la posizione del node nell'arraylist
+     * @return node
+     */
     public Node getNode(int index) {
         return nodes.get(index);
     }
+
+    /***
+     * Metodo per ricavare la lunghezza dell'arraylist
+     * @return
+     */
     public int getNodeNumber(){
         return nodes.size();
     }
 
+
+    /***
+     * Metodo per aggiungere un node all'arraylist
+     * @param node, cioè il node da aggiungere
+     */
     public void addNode(Node node){
         this.nodes.add(node);
     }
+
+
+    //MAI USATO
     public void removeNode(Node node){
         this.nodes.remove(node);
     }
+
+
+    //MAI USATO
     public void printNodes(){
         for (Node node : nodes) {
             System.out.println(node);
         }
     }
+
+
+    //MAI USATO
     public void printNodesWithLinks(){
         for (Node iNode : nodes) {
             for (Node jNode : iNode.getLinks()) {
@@ -38,6 +78,14 @@ public class Graph {
         }
     }
 
+
+    /***
+     * Metodo per trovare il percorso meno costoso per raggiungere le rovine perdute
+     * @param mode
+     * @param start
+     * @param target
+     * @return percorso migliore
+     */
     //Provo ad implementare A* (A-asterisco)
     public ArrayList<Node> getBestPath(NavigationMode mode, Node start, Node target){
 
@@ -87,9 +135,9 @@ public class Graph {
             }
         }
 
-
         return new ArrayList<>();
     }
+
 
     /***
      * Metodo che ricostruisce il percorso partendo dall'arrivo e poi ritorna il percorso "invertito"

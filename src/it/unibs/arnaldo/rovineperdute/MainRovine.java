@@ -2,7 +2,16 @@ package it.unibs.arnaldo.rovineperdute;
 
 import java.util.ArrayList;
 
+/***
+ * Classe main del programma
+ * @author ToBdefined
+ */
 public class MainRovine {
+
+    /***
+     * Metodo main
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("Benvenuto!");
 
@@ -46,6 +55,11 @@ public class MainRovine {
         ////////////////////////////////////////////////////////////////////////////////////
     }
 
+    /***
+     * PER DEBUG
+     * stampa il percorso effettuato con costo del carburante e numero di città attraversate
+     * @param path, cioè il percorso del primo o del secondo team
+     */
     private static void printPathDEBUG(ArrayList<Node> path) {
         int i=1;
         System.out.print("CAMPO BASE ->");

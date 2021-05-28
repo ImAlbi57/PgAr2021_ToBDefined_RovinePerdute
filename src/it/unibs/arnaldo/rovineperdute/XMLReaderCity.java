@@ -6,11 +6,16 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
+/***
+ * Classe per inizializzare e gestire la lettura del file XML di input
+ * @author ToBdefined
+ */
 public class XMLReaderCity {
+
     private XMLStreamReader xmlr;
     private final String path;
-
     private Graph graph;
+
 
     /**
      * Istanzia lo StreamReader e gestisce le eccezioni
@@ -28,13 +33,14 @@ public class XMLReaderCity {
         }
     }
 
+
     /**
      * Legge i dati delle città e li inserisce nell'ArrayList
-     * @return l'ArrayList città
+     * @return graph
      */
     public Graph read() {
-        ArrayList<Node> links = new ArrayList<>();
         //variabili
+        ArrayList<Node> links = new ArrayList<>();
         int id = -1;
         String nome = "";
         int x = -1;
@@ -115,7 +121,7 @@ public class XMLReaderCity {
                             coordinate = new Coords(-1,-1,-1);
                             links = new ArrayList<>();
                         }
-                        //commenti
+                    //commenti
                     case XMLStreamConstants.COMMENT: break;
                     //caratteri
                     case XMLStreamConstants.CHARACTERS: break;
@@ -131,6 +137,11 @@ public class XMLReaderCity {
         return graph;
     }
 
+
+    /***
+     * Metodo per aggiungere node all'arraylist (?)
+     * @param dim, cioè la dimensione massima dell'arraylist (?)
+     */
     private void initGraph(int dim) {
         for(int i=0; i < dim; i++){
             graph.addNode(new Node(new City(i)));

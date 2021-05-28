@@ -1,5 +1,9 @@
 package it.unibs.arnaldo.rovineperdute;
 
+/***
+ * Classe per contenere i nomi dei file xml di input
+ * @author ToBdefined
+ */
 public class GestoreStringhe {
     public static String MAPPA_5 = "XML/PgAr_Map_5.xml";
     public static String MAPPA_12 = "XML/PgAr_Map_12.xml";

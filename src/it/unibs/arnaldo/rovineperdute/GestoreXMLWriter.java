@@ -8,9 +8,15 @@ import javax.xml.stream.XMLStreamWriter;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+/***
+ * Classe per inizializzare e gestire la scrittura del file XML di output
+ * @author ToBdefined
+ */
 public class GestoreXMLWriter {
+
     private XMLStreamWriter xmlw = null;
     private int nTabs = 0;
+
 
     /**
      * Metodo costruttore del writer, crea un writer dato il path
@@ -26,32 +32,35 @@ public class GestoreXMLWriter {
         }
     }
 
+
     /**
      * Metodo per la scrittura dell'XML completo,
      * richiama i metodi creati in seguito, usati opportunamente e con dei cicli
-     //* @param route oggetto contenente il nome del team, il carburante utilizzato e il numero di città percorse
      * @param firstTeam arraylist contenente le città attraversate dal primo team
      * @param secondTeam arraylist contenente le città attraversate dal secondo team
      */
     public void scriviXML(Route firstTeam, Route secondTeam) {
         try {
             System.out.print("\nInizio scrittura della mappa per gli esploratori... ");
-
+            //inizio la scrittura del file XML
             iniziaXML();
             apriTag("output");
+
+            //output del primo team
             apriTagConAttr("route", "team", firstTeam.getVeicolo().getName(), "cost", String.format("%.02f", firstTeam.getFuel()), "cities", ""+firstTeam.getCities());
             for(Node n : firstTeam.getPath()) {
                 writeCity(n.getCity());
             }
             chiudiTag();
 
-
+            //output del secondo team
             apriTagConAttr("route", "team", secondTeam.getVeicolo().getName(), "cost", String.format("%.02f", secondTeam.getFuel()), "cities", ""+secondTeam.getCities());
             for(Node n : secondTeam.getPath()) {
                 writeCity(n.getCity());
             }
             chiudiTag();
 
+            //concludo la scrittura del file XML
             chiudiTag();
             chiudiXML();
 
@@ -61,6 +70,7 @@ public class GestoreXMLWriter {
         }
     }
 
+
     /**
      * Metodo che inizia il file XML, scrivendo l'intestazione (va a capo)
      * @throws XMLStreamException se avvengono errori
@@ -68,6 +78,7 @@ public class GestoreXMLWriter {
     private void iniziaXML() throws XMLStreamException {
         xmlw.writeStartDocument("utf-8", "1.0");aCapo();
     }
+
 
     /**
      * Metodo che termina l'XML, scrive i dati immagazzinati nella cache, dentro il file e chiude
@@ -78,6 +89,7 @@ public class GestoreXMLWriter {
         xmlw.flush();
         xmlw.close();
     }
+
 
     /**
      * Metodo da usare per aprire i tag (tabula, stampa e va a capo)
@@ -90,6 +102,7 @@ public class GestoreXMLWriter {
         aCapo();
     }
 
+
     /**
      * Metodo da usare per chiudere i tag (tabula, stampa e va a capo)
      * @throws XMLStreamException se avvengono errori
@@ -99,6 +112,7 @@ public class GestoreXMLWriter {
         xmlw.writeEndElement();
         aCapo();
     }
+
 
     /**
      * Metodo da usare per la scrittura di una città
@@ -116,6 +130,7 @@ public class GestoreXMLWriter {
         //xmlw.writeAttribute("name", ""+ct.getNome());
         //aCapo();
     }
+
 
     /**
      * Metodo da usare per la scrittura dei tag con attributi (tabula, stampa e va a capo)
@@ -147,6 +162,7 @@ public class GestoreXMLWriter {
         aCapo();
     }
 
+
     /**
      * Metodo da usare per aprire i tag con attributo (tabula, stampa e va a capo)
      * @param tagName stringa col nome del tag
@@ -163,6 +179,7 @@ public class GestoreXMLWriter {
         aCapo();
     }
 
+
     /**
      * Metodo da usare per inserire n tabulazioni
      * @param n numero di indentazioni
@@ -172,6 +189,7 @@ public class GestoreXMLWriter {
         for(;n>0;n--)
             xmlw.writeCharacters("\t");
     }
+
 
     /**
      * Metodo da usare per andare a capo

@@ -148,7 +148,7 @@
 		<city id="9962" name="Teotiguacan"/>
 		<city id="9999" name="Rovine Perdute"/>
 	</route>
-	<route team="Metztli" cost="9115" cities="162">
+	<route team="Metztli" cost="9115,00" cities="162">
 		<city id="0" name="campo base"/>
 		<city id="66" name="El Mirador"/>
 		<city id="160" name="Chiva"/>
