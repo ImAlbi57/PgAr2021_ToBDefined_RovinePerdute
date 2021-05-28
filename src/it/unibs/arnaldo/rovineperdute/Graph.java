@@ -39,7 +39,7 @@ public class Graph {
 
     /***
      * Metodo per ricavare la lunghezza dell'arraylist
-     * @return
+     * @return lunghezza
      */
     public int getNodeNumber(){
         return nodes.size();

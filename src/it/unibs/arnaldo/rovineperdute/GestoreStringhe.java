@@ -11,7 +11,7 @@ public class GestoreStringhe {
     public static String MAPPA_200 = "XML/PgAr_Map_200.xml";
     public static String MAPPA_2000 = "XML/PgAr_Map_2000.xml";
     public static String MAPPA_10000 = "XML/PgAr_Map_10000.xml";
-    private static String MESS_ERRORE = "La scelta inserita non e' valida!";
+    private static final String MESS_ERRORE = "La scelta inserita non e' valida!";
 
 
     private static final String SALUTO = "" +
