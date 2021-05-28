@@ -15,6 +15,15 @@ import java.util.ArrayList;
 public class XMLReaderCity {
 
     public static final String ERRORE_INIZ = "Errore nell'inizializzazione del reader:";
+    public static final String MAP = "map";
+    public static final String SIZE = "size";
+    public static final String CITY = "city";
+    public static final String ID = "id";
+    public static final String NAME = "name";
+    public static final String X = "x";
+    public static final String Y = "y";
+    public static final String H = "h";
+    public static final String LINK = "link";
     private XMLStreamReader xmlr;
     private final String path;
     private Graph graph;
@@ -62,37 +71,37 @@ public class XMLReaderCity {
                         //ricavo il nome dell'elemento iniziale
                         String src = xmlr.getLocalName();
 
-                        if(src.equals("map")){
+                        if(src.equals(MAP)){
                             for (int i = 0; i < xmlr.getAttributeCount(); i++){
-                                if(xmlr.getAttributeLocalName(i).equals("size"))
+                                if(xmlr.getAttributeLocalName(i).equals(SIZE))
                                     initGraph(Integer.parseInt(xmlr.getAttributeValue(i)));
                             }
                         }
 
                         //se l'elemento iniziale corrisponde a "city"
-                        if(src.equals("city")) {
+                        if(src.equals(CITY)) {
                             //ciclo for per scorrere il numero di attributi presenti nell'elemento iniziale
                             for (int i = 0; i < xmlr.getAttributeCount(); i++) {
                                 //ricavo il nome dell'attributo
                                 switch (xmlr.getAttributeLocalName(i)) {
                                     //caso dell'attributo id
-                                    case "id":
+                                    case ID:
                                         id = Integer.parseInt(xmlr.getAttributeValue(i));
                                         break;
                                     //caso dell'attributo nome
-                                    case "name":
+                                    case NAME:
                                         nome = xmlr.getAttributeValue(i);
                                         break;
                                     //caso dell'attributo coordinate
-                                    case "x":
+                                    case X:
                                         x = Integer.parseInt(xmlr.getAttributeValue(i));
                                         break;
                                     //caso dell'attributo y
-                                    case "y":
+                                    case Y:
                                         y = Integer.parseInt(xmlr.getAttributeValue(i));
                                         break;
                                     //caso dell'attributo h
-                                    case "h":
+                                    case H:
                                         h = Integer.parseInt(xmlr.getAttributeValue(i));
                                         break;
                                 }
@@ -101,7 +110,7 @@ public class XMLReaderCity {
                             coordinate = new Coords(x, y, h);
                         }
 
-                        if(src.equals("link")){
+                        if(src.equals(LINK)){
                             links.add(graph.getNode(Integer.parseInt(xmlr.getAttributeValue(0))));
                         }
 
@@ -113,7 +122,7 @@ public class XMLReaderCity {
                     //elemento finale
                     case XMLStreamConstants.END_ELEMENT:
                         //controllo che il ciclo abbia realmente acquisito dei valori
-                        if(xmlr.getLocalName().equals("city") && id != -1 && !nome.equals("") && x!=-1 && y!= -1 && h != -1 /*&& !collegamenti.equals("")*/) {
+                        if(xmlr.getLocalName().equals(CITY) && id != -1 && !nome.equals("") && x!=-1 && y!= -1 && h != -1 /*&& !collegamenti.equals("")*/) {
                             //creo un oggetto città con i valori acquisiti e li aggiungo ad un arraylist
                             graph.getNode(id).setCity(new City(id, nome, coordinate));
                             graph.getNode(id).setLinks(links);
