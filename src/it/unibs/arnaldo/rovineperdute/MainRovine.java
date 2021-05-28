@@ -97,6 +97,7 @@ public class MainRovine {
         GestoreXMLWriter xmlw = new GestoreXMLWriter("out.xml");
         xmlw.scriviXML(tonathiuh, metzetli);
 
+        System.out.println("\nIl team che ha speso meno carburante e': " + printTeam(tonathiuh, metzetli));
 
         //////  PER I BENCHMARK  //////
         BenchMark.end();
@@ -105,6 +106,13 @@ public class MainRovine {
         ////////////////////////////////////////////////////////////////////////////////////
     }
 
+
+    public static String printTeam(Route firstTeam, Route secondTeam){
+        if(firstTeam.getFuel() >= secondTeam.getFuel())
+            return "Team Metztli";
+
+        else return "Team Tonatiuh";
+    }
 
     /***
      * PER DEBUG
