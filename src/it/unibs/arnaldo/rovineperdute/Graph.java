@@ -21,14 +21,6 @@ public class Graph {
 
     //GETTERS
     /***
-     * Get nodes
-     * @return nodes
-     */
-    public ArrayList<Node> getNodes() {
-        return nodes;
-    }
-
-    /***
      * Method to extract a node from the arraylist through an index
      * @param index, which is the node's position in the arraylist
      * @return node
@@ -55,30 +47,6 @@ public class Graph {
     }
 
 
-    //MAI USATO
-    public void removeNode(Node node){
-        this.nodes.remove(node);
-    }
-
-
-    //MAI USATO
-    public void printNodes(){
-        for (Node node : nodes) {
-            System.out.println(node);
-        }
-    }
-
-
-    //MAI USATO
-    public void printNodesWithLinks(){
-        for (Node iNode : nodes) {
-            for (Node jNode : iNode.getLinks()) {
-                System.out.println(iNode.getCity().getId() + "-" + jNode.getCity().getId() + ": " + iNode.getCity().getCoordinate().calcolaDifferenzaAltitudine(jNode.getCity().getCoordinate()));
-            }
-        }
-    }
-
-
     /***
      * Method to find the less expensive path in order to reach the lost ruins
      * @param mode navigation mode
@@ -88,10 +56,6 @@ public class Graph {
      */
     //Provo ad implementare A* (A-asterisco)
     public ArrayList<Node> getBestPath(NavigationMode mode, Node start, Node target){
-
-        ////Controllo la modalità [CONTROLLO INUTILE]
-        //if(mode != NavigationMode.DISTANCE && mode != NavigationMode.HEIGHTDIFFERENCE)
-        //    return null;
 
         PriorityQueue<Node> nodiAperti = new PriorityQueue<>();
         HashSet<Node> nodiChiusi = new HashSet<>();
@@ -151,7 +115,8 @@ public class Graph {
 
         //Aggiungo a path il nodo corrente e poi scorro "all'indietro" tramite l'HashMap cameFrom
         while (currNode != null){
-            //currNode.setLinks(null);
+            //Rimuovo i collegamenti agli altri nodi che sono superflui per la stampa
+            currNode.setLinks(null);
             path.add(currNode);
             currNode = cameFrom.get(currNode);
         }

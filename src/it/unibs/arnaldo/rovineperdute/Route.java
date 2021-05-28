@@ -46,7 +46,7 @@ public class Route {
      * @return fuel
      */
     public double getFuel() {
-        return this.veicolo.getCarburante();
+        return this.veicolo.getFuel();
     }
 
     /***
@@ -67,7 +67,7 @@ public class Route {
         System.out.printf(MESS_ROTTA, veicolo.getName());
         this.path = mappa.getBestPath(veicolo.getMode(), mappa.getNode(0), mappa.getNode(mappa.getNodeNumber()-1));
         this.cities = path.size();
-        this.veicolo.setCarburante(path.get(this.cities-1).getDistance());
+        this.veicolo.setFuel(path.get(this.cities-1).getDistance());
         System.out.println(MESS_PARTENZA);
     }
 }

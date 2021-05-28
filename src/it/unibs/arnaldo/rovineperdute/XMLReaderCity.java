@@ -21,8 +21,8 @@ public class XMLReaderCity {
 
 
     /***
-     * Instantiates the StramReader and manages exceptions
-     * @param path file executed path
+     * Instantiates the StreamReader and manages exceptions
+     * @param path file path
      */
     public XMLReaderCity(String path) {
         this.path = path;
@@ -142,23 +142,12 @@ public class XMLReaderCity {
 
 
     /***
-     * Method to add a node in an arraylist
-     * @param dim, which is the maximum dimension of the arraylist
+     * Method to initialize the arraylist by adding the nodes
+     * @param dim maximum dimension of the arraylist
      */
     private void initGraph(int dim) {
         for(int i=0; i < dim; i++){
             graph.addNode(new Node(new City(i)));
         }
     }
-
-    /*
-    //Metodo per stampare tutti gli oggetti Città ricavati dall'XML(per DEBUG)
-    public void PrintCity() {
-        for(City ct: cities) {
-            System.out.println("id = " + ct.getId()
-                    + "\nnome = " + ct.getNome()
-                    + "\ncoordinate = (" + ct.getCoordinate().getX() + "; " + ct.getCoordinate().getY()+"; "+ct.getCoordinate().getH()+ ")\n");
-        }
-    }
-    */
 }
