@@ -1,7 +1,6 @@
 package it.unibs.arnaldo.rovineperdute;
 
 import it.unibs.tobdefined.utility.InputDati;
-import java.util.ArrayList;
 
 /***
  * Classe main del programma
@@ -10,19 +9,22 @@ import java.util.ArrayList;
 public class MainRovine {
 
     public static final String MESS_CARBURANTE = "\nIl team che ha speso meno carburante e': ";
-    public static final String METZTLI = "Team Metztli";
-    public static final String TONATIUH = "Team Tonatiuh";
+    public static final String TEAM = "Team ";
+    public static final String METZTLI = "Metztli";
+    public static final String TONATIUH = "Tonatiuh";
+    public static final String FILE_NAME = "out.xml";
 
     /***
      * Metodo main
      * @param args args
      */
     public static void main(String[] args) {
-        System.out.println(GestoreStringhe.getSALUTO());
+        System.out.println(GestoreStringhe.SALUTO);
         int scelta;
+        int easterEgg = 0;
 
         do{
-            scelta = InputDati.leggiInteroNonNegativo(GestoreStringhe.getMENU());
+            scelta = InputDati.leggiInteroNonNegativo(GestoreStringhe.MENU);
 
             //switch per scegliere il file XML da leggere
             switch(scelta){
@@ -55,14 +57,13 @@ public class MainRovine {
                     break;
                 //scelte diverse dalle precedenti: output errore
                 default:
-                    System.out.println(GestoreStringhe.getMessErrore());
+                    if(++easterEgg > 3)
+                        System.out.println(GestoreStringhe.EG);
+                    else
+                        System.out.println(GestoreStringhe.MESS_ERRORE);
                     break;
             }
         }while(scelta != 0);
-
-
-
-
     }
 
 
@@ -81,27 +82,20 @@ public class MainRovine {
         XMLReaderCity xmlr = new XMLReaderCity(mappa_scelta); //GestoreStringhe.MAPPA_10000
         //richiamo il metodo per leggere l'XML
         Graph mappa = xmlr.read();
-        //stampo i valori dell'arraylist ottenuti
-        //mappa.printNodes();
-        //mappa.printNodesWithLinks();
+
+
         System.out.println();
 
 
         //POSSIBILE MODIFICA [Veicolo -> non abstract]
-        //Route tonathiuh = new Route(new Veicolo("Tonatiuh", NavigationMode.DISTANCE));
-        //Route metzetli = new Route(new Veicolo("Metztli", NavigationMode.HEIGHTDIFFERENCE));
-        Route tonathiuh = new Route(new VeicoloTonatiuh("Tonatiuh"));
-        Route metzetli = new Route(new VeicoloMetztli("Metztli"));
+        Route tonathiuh = new Route(new Veicolo("Tonatiuh", NavigationMode.DISTANCE));
+        Route metzetli = new Route(new Veicolo("Metztli", NavigationMode.HEIGHTDIFFERENCE));
 
         tonathiuh.startRoute(mappa);
         metzetli.startRoute(mappa);
 
-        //printPathDEBUG(tonathiuh.getPath());
-        //System.out.println();
-        //System.out.println();
-        //printPathDEBUG(metzetli.getPath());
 
-        GestoreXMLWriter xmlw = new GestoreXMLWriter("out.xml");
+        GestoreXMLWriter xmlw = new GestoreXMLWriter(FILE_NAME);
         xmlw.scriviXML(tonathiuh, metzetli);
 
         System.out.println(MESS_CARBURANTE + printTeam(tonathiuh, metzetli));
@@ -120,30 +114,8 @@ public class MainRovine {
      */
     public static String printTeam(Route firstTeam, Route secondTeam){
         if(firstTeam.getFuel() >= secondTeam.getFuel())
-            return METZTLI;
+            return TEAM+METZTLI;
 
-        else return TONATIUH;
-    }
-
-
-    /***
-     * PER DEBUG
-     * stampa il percorso effettuato con costo del carburante e numero di città attraversate
-     * print the route taken with the fuel cost and the number of cities crossed
-     * @param path, cioè il percorso del primo o del secondo team
-     *              which is the route of the first or second team
-     */
-    private static void printPathDEBUG(ArrayList<Node> path) {
-        int i=1;
-        System.out.print("CAMPO BASE ->");
-        for (Node node : path) {
-            if(++i % 10 == 0)
-                System.out.println();
-            System.out.print(node.getCity().getId() + "\t->\t");
-        }
-        int countNodi = path.size();
-        System.out.println("ANTICHE ROVINE");
-        double carburante = path.get(countNodi-1).getDistance();
-        System.out.printf("Numero di città percorse: %s, carburante consumato: %s", countNodi, carburante);
+        else return TEAM+TONATIUH;
     }
 }

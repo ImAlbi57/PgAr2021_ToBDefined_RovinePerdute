@@ -4,11 +4,11 @@ package it.unibs.arnaldo.rovineperdute;
  * Class to define the object Vehicle
  * @author ToBdefined
  */
-public abstract class Veicolo {
+public class Veicolo {
 
     private final String name;
     private final NavigationMode mode;
-    private double carburante;
+    private double fuel;
 
 
     /***
@@ -43,17 +43,17 @@ public abstract class Veicolo {
      * Get carburante
      * @return carburante
      */
-    public double getCarburante() {
-        return carburante;
+    public double getFuel() {
+        return fuel;
     }
 
 
     //SETTERS
     /***
      * Set carburante
-     * @param carburante fuel
+     * @param fuel fuel
      */
-    public void setCarburante(double carburante){
-        this.carburante = carburante;
+    public void setFuel(double fuel){
+        this.fuel = fuel;
     }
 }

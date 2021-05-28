@@ -15,16 +15,30 @@ import java.util.ArrayList;
 public class GestoreXMLWriter {
 
     public static final String ENCODING = "utf-8";
+    public static final String XML_VERSION = "1.0";
     public static final String ERRORE_INIZ = "Errore nell'inizializzazione del writer:";
     public static final String INIZIO_SCRITTURA = "\nInizio scrittura della mappa per gli esploratori... ";
     public static final String FINE_SCRITTURA = "Fine!\n\nBuon viaggio!";
+    public static final String TAB = "\t";
+    public static final String NEWLINE = "\r\n";
+
+    public static final String OUTPUT = "output";
+    public static final String ROUTE = "route";
+    public static final String TEAM = "team";
+    public static final String COST = "cost";
+    public static final String COST_VALUE = "%.02f";
+    public static final String CITIES = "cities";
+    public static final String CITY = "city";
+    public static final String ID = "id";
+    public static final String NAME = "name";
+
     private XMLStreamWriter xmlw = null;
     private int nTabs = 0;
 
 
     /***
      * Writer constructor method, it creates a writer given the path
-     * @param path file executed path
+     * @param path file path
      */
     public GestoreXMLWriter(String path) {
         try {
@@ -39,7 +53,7 @@ public class GestoreXMLWriter {
 
     /***
      * Method for the complete writing of the output XML file
-     * it recalls method created later, properly used and with loops
+     * it recalls method created later, properly used
      * @param firstTeam arraylist containing cities crossed by the first team
      * @param secondTeam arraylist containing cities crossed by the second team
      */
@@ -48,24 +62,16 @@ public class GestoreXMLWriter {
             System.out.print(INIZIO_SCRITTURA);
             //inizio la scrittura del file XML
             iniziaXML();
-            apriTag("output");
+            apriTag(OUTPUT);
 
             //output del primo team
-            apriTagConAttr("route", "team", firstTeam.getVeicolo().getName(), "cost", String.format("%.02f", firstTeam.getFuel()), "cities", ""+firstTeam.getCities());
-            for(Node n : firstTeam.getPath()) {
-                writeCity(n.getCity());
-            }
-            chiudiTag();
+            writeTeam(firstTeam);
 
             //output del secondo team
-            apriTagConAttr("route", "team", secondTeam.getVeicolo().getName(), "cost", String.format("%.02f", secondTeam.getFuel()), "cities", ""+secondTeam.getCities());
-            for(Node n : secondTeam.getPath()) {
-                writeCity(n.getCity());
-            }
-            chiudiTag();
+            writeTeam(secondTeam);
 
-            //concludo la scrittura del file XML
             chiudiTag();
+            //concludo la scrittura del file XML
             chiudiXML();
 
             System.out.println(FINE_SCRITTURA);
@@ -76,11 +82,69 @@ public class GestoreXMLWriter {
 
 
     /***
+     * Method used to write teams
+     * It builds the structure for attributes and passes everything to writeCity method
+     * @param team team to print
+     * @throws XMLStreamException
+     */
+    private void writeTeam(Route team) throws XMLStreamException {
+        ArrayList<Pair<String>> attr = Pair.buildPairs(TEAM, team.getVeicolo().getName(), COST, String.format(COST_VALUE, team.getFuel()), CITIES, ""+team.getCities());
+        apriTagConAttr(ROUTE, attr);
+        for(Node n : team.getPath()) {
+            writeCity(n.getCity());
+        }
+        chiudiTag();
+    }
+
+
+    /***
+     * Method used to write cities
+     * It builds the structure for attributes and passes everything to writeTagWithAttributes method
+     * @param ct city to print
+     * @throws XMLStreamException if errors occur
+     */
+    private void writeCity(City ct) throws XMLStreamException {
+        writeTagWithAttributes(CITY, Pair.buildPairs(ID, ""+ct.getId(), NAME, ct.getNome()), null);
+    }
+
+
+    /***
+     * Method used to write tags with attributes (tabulates, prints and stars a new line)
+     * tag with text and attributes, no sub-tags
+     * @param tagName string with the tag's name
+     * @param attributes pairs of strings containing the name of the attribute and the corresponding value
+     * @param characters string to print between tags
+     * @throws XMLStreamException if error occur
+     */
+    public void writeTagWithAttributes(String tagName, ArrayList<Pair<String>> attributes, String characters) throws XMLStreamException {
+        tabula(nTabs);
+
+        if(characters == null){
+            xmlw.writeEmptyElement(tagName);
+        }
+        else{
+            xmlw.writeStartElement(tagName);
+        }
+
+        for (Pair<String> pair : attributes) {
+            xmlw.writeAttribute(pair.getValue1(), pair.getValue2());
+        }
+
+        if(characters != null){
+            xmlw.writeCharacters(characters);
+            xmlw.writeEndElement();
+        }
+
+        aCapo();
+    }
+
+
+    /***
      * Method that starts to write the XML file by writing the letterhead (starts a new line)
      * @throws XMLStreamException if errors occur
      */
     private void iniziaXML() throws XMLStreamException {
-        xmlw.writeStartDocument(ENCODING, "1.0");aCapo();
+        xmlw.writeStartDocument(ENCODING, XML_VERSION);aCapo();
     }
 
 
@@ -119,67 +183,17 @@ public class GestoreXMLWriter {
 
 
     /***
-     * Method used to write cities
-     * It builds the structure for attributes and passes everything to writeTagWithAttributes method
-     * @param ct city to print
-     * @throws XMLStreamException if errors occur
-     */
-    private void writeCity(City ct) throws XMLStreamException {
-        writeTagWithAttributes("city", Pair.buildPairs("id", ""+ct.getId(), "name", ct.getNome()), null);
-
-        //CODICE PRECEDENTE AI PAIR
-        //tabula(nTabs);
-        //xmlw.writeEmptyElement("city");
-        //xmlw.writeAttribute("id", ""+ct.getId());
-        //xmlw.writeAttribute("name", ""+ct.getNome());
-        //aCapo();
-    }
-
-
-    /***
-     * Method used to write tags with attributes (tabulates, prints and stars a new line)
-     * tag with text and attributes, no sub-tags
+     * Method used to open tags with attribute (tabulates, prints and stars a new line)
      * @param tagName string with the tag's name
      * @param attributes pairs of strings containing the name of the attribute and the corresponding value
-     * @param characters string to print between tags
-     * @throws XMLStreamException if error occur
+     * @throws XMLStreamException if errors occur
      */
-    public void writeTagWithAttributes(String tagName, ArrayList<Pair<String>> attributes, String characters) throws XMLStreamException {
-        tabula(nTabs);
-
-        if(characters == null){
-            xmlw.writeEmptyElement(tagName);
-        }
-        else{
-            xmlw.writeStartElement(tagName);
-        }
-
+    private void apriTagConAttr(String tagName, ArrayList<Pair<String>> attributes) throws XMLStreamException {
+        tabula(nTabs++);
+        xmlw.writeStartElement(tagName);
         for (Pair<String> pair : attributes) {
             xmlw.writeAttribute(pair.getValue1(), pair.getValue2());
         }
-
-        if(characters != null){
-            xmlw.writeCharacters(characters);
-            xmlw.writeEndElement();
-        }
-
-        aCapo();
-    }
-
-
-    /***
-     * Method used to open tags with attribute (tabulates, prints and stars a new line)
-     * @param tagName string with the tag's name
-     * @param attr string with the attribute's name
-     * @param val string with the attribute's value
-     * @throws XMLStreamException if errors occur
-     */
-    private void apriTagConAttr(String tagName, String attr, String val, String attr2, String val2, String attr3, String val3) throws XMLStreamException {
-        tabula(nTabs++);
-        xmlw.writeStartElement(tagName);
-        xmlw.writeAttribute(attr, val);
-        xmlw.writeAttribute(attr2, val2);
-        xmlw.writeAttribute(attr3, val3);
         aCapo();
     }
 
@@ -191,7 +205,7 @@ public class GestoreXMLWriter {
      */
     public void tabula(int n) throws XMLStreamException {
         for(;n>0;n--)
-            xmlw.writeCharacters("\t");
+            xmlw.writeCharacters(TAB);
     }
 
 
@@ -200,7 +214,6 @@ public class GestoreXMLWriter {
      * @throws XMLStreamException if errors occur
      */
     public void aCapo() throws XMLStreamException {
-        //inserisco caratteri per andare a capo
-        xmlw.writeCharacters("\r\n");
+        xmlw.writeCharacters(NEWLINE);
     }
 }
