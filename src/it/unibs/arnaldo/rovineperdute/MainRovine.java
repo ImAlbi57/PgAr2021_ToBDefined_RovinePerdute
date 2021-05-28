@@ -1,5 +1,7 @@
 package it.unibs.arnaldo.rovineperdute;
 
+import it.unibs.tobdefined.utility.InputDati;
+
 import java.util.ArrayList;
 
 /***
@@ -13,15 +15,63 @@ public class MainRovine {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println("Benvenuto!");
+        System.out.println(GestoreStringhe.getSALUTO());
+        int scelta = -1;
 
+        do{
+            scelta = InputDati.leggiInteroNonNegativo(GestoreStringhe.getMENU());
+
+            //switch per scegliere il file XML da leggere
+            switch(scelta){
+                //file con 5 città
+                case 1:
+                    esecuzione(GestoreStringhe.MAPPA_5);
+                    break;
+                //file con 12 città(o 13)
+                case 2:
+                    esecuzione(GestoreStringhe.MAPPA_12);
+                    break;
+                //file con 50 città
+                case 3:
+                    esecuzione(GestoreStringhe.MAPPA_50);
+                    break;
+                //file con 200 città
+                case 4:
+                    esecuzione(GestoreStringhe.MAPPA_200);
+                    break;
+                //file con 2000 città
+                case 5:
+                    esecuzione(GestoreStringhe.MAPPA_2000);
+                    break;
+                //file con 10000 città
+                case 6:
+                    esecuzione(GestoreStringhe.MAPPA_10000);
+                    break;
+                //uscita dal programma
+                case 0:
+                    break;
+                //scelte diverse dalle precedenti: output errore
+                default:
+                    System.out.println(GestoreStringhe.getMessErrore());
+                    break;
+            }
+        }while(scelta != 0);
+
+
+
+
+    }
+
+
+    //Metodo per l'esecuzione del programma
+    public static void esecuzione(String mappa_scelta){
         //////  PER I BENCHMARK  //////
         BenchMark.start();
         ///////////////////////////////
 
 
         //inizializzo il costruttore della classe dandogli come parametro il testo XML da leggere
-        XMLReaderCity xmlr = new XMLReaderCity(GestoreStringhe.MAPPA_10000);
+        XMLReaderCity xmlr = new XMLReaderCity(mappa_scelta); //GestoreStringhe.MAPPA_10000
         //richiamo il metodo per leggere l'XML
         Graph mappa = xmlr.read();
         //stampo i valori dell'arraylist ottenuti
@@ -54,6 +104,7 @@ public class MainRovine {
 
         ////////////////////////////////////////////////////////////////////////////////////
     }
+
 
     /***
      * PER DEBUG

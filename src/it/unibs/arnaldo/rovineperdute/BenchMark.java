@@ -23,12 +23,12 @@ public class BenchMark {
     public static void end(){
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
-        System.out.printf("\n\nIl programma è stato eseguito in %d ms\n", elapsedTime);
+        System.out.printf("\nIl programma è stato eseguito in %d ms\n", elapsedTime);
 
         //Per la memoria usata, fa partire il garbage collector
         Runtime runtime = Runtime.getRuntime();
         runtime.gc();
         long memory = runtime.totalMemory() - runtime.freeMemory();
-        System.out.printf("Sono stati usati %.2f kb di memoria", (float) memory/1000);
+        System.out.printf("Sono stati usati %.2f kb di memoria\n\n", (float) memory/1000);
     }
 }
