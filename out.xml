@@ -1,51 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <output>
-	<route team="Tonatiuh" cost="48426,75" cities="21">
+	<route team="Tonatiuh" cost="38070,18" cities="12">
 		<city id="0" name="campo base"/>
-		<city id="8" name="Guapalupa"/>
-		<city id="6" name="Cusco"/>
-		<city id="15" name="Verolanuova"/>
-		<city id="26" name="Verolanuova"/>
-		<city id="40" name="Qu'umarkaj"/>
-		<city id="54" name="Verolanuova"/>
-		<city id="63" name="Guaia"/>
-		<city id="67" name="Chiqua"/>
-		<city id="80" name="Teotiguacan"/>
-		<city id="84" name="Quirigua"/>
-		<city id="93" name="Guaia"/>
-		<city id="103" name="Teotiguacan"/>
-		<city id="113" name="Tikal"/>
-		<city id="122" name="Cusco"/>
-		<city id="135" name="Rio"/>
-		<city id="149" name="Cusco"/>
-		<city id="162" name="El Mirador"/>
-		<city id="176" name="Macondo"/>
-		<city id="186" name="El Mirador"/>
-		<city id="199" name="Rovine Perdute"/>
+		<city id="5" name="Guaia"/>
+		<city id="12" name="Guaia"/>
+		<city id="16" name="Guaia"/>
+		<city id="21" name="Verolanuova"/>
+		<city id="27" name="Guapalupa"/>
+		<city id="30" name="Guaia"/>
+		<city id="32" name="Machu Picchu"/>
+		<city id="37" name="Rio"/>
+		<city id="38" name="Quetzacoatl"/>
+		<city id="44" name="Mixco Vieio"/>
+		<city id="49" name="Rovine Perdute"/>
 	</route>
-	<route team="Metztli" cost="7449,00" cities="23">
+	<route team="Metztli" cost="9345,00" cities="12">
 		<city id="0" name="campo base"/>
-		<city id="10" name="Quetzacoatl"/>
-		<city id="24" name="Rio"/>
-		<city id="23" name="Cusco"/>
-		<city id="36" name="Quirigua"/>
-		<city id="49" name="Quirigua"/>
-		<city id="56" name="Chiva"/>
-		<city id="63" name="Guaia"/>
-		<city id="76" name="Guaia"/>
-		<city id="90" name="Caracol"/>
-		<city id="97" name="Tikal"/>
-		<city id="106" name="El Mirador"/>
-		<city id="115" name="El Mirador"/>
-		<city id="128" name="Machu Picchu"/>
-		<city id="129" name="Verolanuova"/>
-		<city id="140" name="Chiva"/>
-		<city id="146" name="Machu Picchu"/>
-		<city id="158" name="El Mirador"/>
-		<city id="172" name="Qu'umarkaj"/>
-		<city id="185" name="Quetzacoatl"/>
-		<city id="183" name="Tikal"/>
-		<city id="194" name="Chiva"/>
-		<city id="199" name="Rovine Perdute"/>
+		<city id="6" name="Rio"/>
+		<city id="8" name="Qu'umarkaj"/>
+		<city id="10" name="Teotiguacan"/>
+		<city id="16" name="Guaia"/>
+		<city id="21" name="Verolanuova"/>
+		<city id="27" name="Guapalupa"/>
+		<city id="31" name="Caracol"/>
+		<city id="36" name="Tikal"/>
+		<city id="38" name="Quetzacoatl"/>
+		<city id="44" name="Mixco Vieio"/>
+		<city id="49" name="Rovine Perdute"/>
 	</route>
 </output>

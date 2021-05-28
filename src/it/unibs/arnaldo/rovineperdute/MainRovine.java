@@ -66,6 +66,10 @@ public class MainRovine {
     }
 
 
+    /***
+     * Metodo per eseguire il programma data una mappa
+     * @param mappa_scelta
+     */
     //Metodo per l'esecuzione del programma
     public static void esecuzione(String mappa_scelta){
         //////  PER I BENCHMARK  //////
@@ -105,17 +109,22 @@ public class MainRovine {
         //////  PER I BENCHMARK  //////
         BenchMark.end();
         ///////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////////////////////
     }
 
 
+    /***
+     * Metodo per verificare quale dei due team ha risparmiato più carburante
+     * @param firstTeam, cioè Tonatiuh
+     * @param secondTeam, cioè Metztli
+     * @return
+     */
     public static String printTeam(Route firstTeam, Route secondTeam){
         if(firstTeam.getFuel() >= secondTeam.getFuel())
             return METZTLI;
 
         else return TONATIUH;
     }
+
 
     /***
      * PER DEBUG
