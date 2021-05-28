@@ -2,6 +2,7 @@ package it.unibs.arnaldo.rovineperdute;
 
 /***
  * Classe per contenere i nomi dei file xml di input
+ * Class to contain the name of the input XML file
  * @author ToBdefined
  */
 public class GestoreStringhe {

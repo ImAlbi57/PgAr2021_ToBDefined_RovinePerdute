@@ -129,7 +129,9 @@ public class MainRovine {
     /***
      * PER DEBUG
      * stampa il percorso effettuato con costo del carburante e numero di città attraversate
+     * print the route taken with the fuel cost and the number of cities crossed
      * @param path, cioè il percorso del primo o del secondo team
+     *              which is the route of the first or second team
      */
     private static void printPathDEBUG(ArrayList<Node> path) {
         int i=1;

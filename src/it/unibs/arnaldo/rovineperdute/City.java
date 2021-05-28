@@ -2,6 +2,7 @@ package it.unibs.arnaldo.rovineperdute;
 
 /***
  * Classe per definire l'oggetto città
+ * Class to define the object city
  * @author ToBdefined
  */
 public class City {
@@ -13,7 +14,9 @@ public class City {
 
     /***
      * Costruttore di città 1
+     * City 1 constructor
      * @param id, cioè il numero attribuito alla città nell'xml
+     *            which is the numbero attributed to the city in the xml-file
      */
     public City(int id){
         this.id = id;
@@ -21,9 +24,13 @@ public class City {
 
     /***
      * Costruttore di città 2
+     * City 2 constructor
      * @param id, cioè il numero attribuito alla città nell'xml
+     *            which is the number attributed to the city in the xml-file
      * @param nome, cioè il nome della città
+     *              which is the city's number
      * @param coordinate, cioè la posizione della città
+     *                    which is the city's position
      */
     public City(int id, String nome, Coords coordinate) {
         this.id = id;
@@ -35,6 +42,7 @@ public class City {
     //GETTERS
     /***
      * Getter di id
+     * id Getter
      * @return id
      */
     public int getId() {
@@ -43,6 +51,7 @@ public class City {
 
     /***
      * Getter di nome
+     * name Getter
      * @return nome
      */
     public String getNome() {
@@ -51,6 +60,7 @@ public class City {
 
     /***
      * Getter di coordinate
+     * coordinates Getter
      * @return coordinate
      */
     public Coords getCoordinate() {
@@ -61,6 +71,7 @@ public class City {
     //SETTERS
     /***
      * Setter di id
+     * id Setter
      * @param id
      */
     public void setId(int id) {

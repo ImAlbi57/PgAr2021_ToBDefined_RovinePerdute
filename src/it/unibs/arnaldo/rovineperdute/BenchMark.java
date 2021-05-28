@@ -1,7 +1,8 @@
 package it.unibs.arnaldo.rovineperdute;
 
 /***
- * Classe per mandare in output i benchmark
+ * Classe per mandare in output i benchmarks
+ * Class to output benchmarks
  * @author ToBdefined
  */
 public class BenchMark {
@@ -13,6 +14,7 @@ public class BenchMark {
 
     /***
      * Metodo per iniziare il cronometraggio del tempo impiegato a leggere il programma
+     * Method to begin timing the time taken to read the program
      */
     public static void start(){
         startTime = System.currentTimeMillis();
@@ -21,6 +23,7 @@ public class BenchMark {
 
     /***
      * Metodo per mandare in output al termine del programma il tempo e lo spazio di memoria impiegati
+     * Method to output time and memory space taken at the end of the program
      */
     public static void end(){
         long stopTime = System.currentTimeMillis();

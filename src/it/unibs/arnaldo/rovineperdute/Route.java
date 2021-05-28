@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /***
  *Classe per definire l'oggetto Route
+ * Class to define the object Route
  * @author ToBdefined
  */
 public class Route {
@@ -17,6 +18,7 @@ public class Route {
 
     /***
      * Costruttore di route
+     * Route Constructor
      * @param veicolo
      */
     //costruttore di route
@@ -28,6 +30,7 @@ public class Route {
     //GETTERS
     /***
      * Getter di veicolo
+     * vehicle Getter
      * @return veicolo
      */
     public Veicolo getVeicolo() {
@@ -36,6 +39,7 @@ public class Route {
 
     /***
      * Getter di path
+     * path Getter
      * @return path
      */
     public ArrayList<Node> getPath() {
@@ -44,6 +48,7 @@ public class Route {
 
     /***
      * Getter di fuel
+     * fuel Getter
      * @return fuel
      */
     public double getFuel() {
@@ -52,6 +57,7 @@ public class Route {
 
     /***
      * Getter di cities
+     * cities Getter
      * @return cities
      */
     public int getCities() {
@@ -61,6 +67,7 @@ public class Route {
 
     /***
      *Metodo per calcolare il percorso migliore
+     * Method to calculate the best path
      * @param mappa
      */
     //Metodo per calcolare la rotta

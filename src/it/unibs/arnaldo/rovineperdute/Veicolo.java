@@ -2,6 +2,7 @@ package it.unibs.arnaldo.rovineperdute;
 
 /***
  * Classe per definire l'oggetto veicolo
+ * Class to define the object vehicle
  * @author ToBdefined
  */
 public abstract class Veicolo {
@@ -13,6 +14,7 @@ public abstract class Veicolo {
 
     /***
      * Costruttore di veicolo
+     * vehicle Constructor
      * @param name
      * @param mode
      */
@@ -25,6 +27,7 @@ public abstract class Veicolo {
     //GETTERS
     /***
      * Getter di name
+     * name Getter
      * @return name
      */
     public String getName() {
@@ -33,6 +36,7 @@ public abstract class Veicolo {
 
     /***
      * Getter di mode
+     * mode Getter
      * @return mode
      */
     public NavigationMode getMode() {
@@ -41,6 +45,7 @@ public abstract class Veicolo {
 
     /***
      * Getter di carburante
+     * oil Getter
      * @return carburante
      */
     public double getCarburante() {
@@ -51,6 +56,7 @@ public abstract class Veicolo {
     //SETTERS
     /***
      * Setter di carburante
+     * oil Setter
      * @param carburante
      */
     public void setCarburante(double carburante){

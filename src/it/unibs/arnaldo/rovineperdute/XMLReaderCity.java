@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /***
  * Classe per inizializzare e gestire la lettura del file XML di input
+ * Classe to initialize and manage the reading of the input XML file
  * @author ToBdefined
  */
 public class XMLReaderCity {
@@ -20,6 +21,7 @@ public class XMLReaderCity {
 
     /**
      * Istanzia lo StreamReader e gestisce le eccezioni
+     * Instantiates the StramReader and manages exceptions
      * @param path percorso del file
      */
     public XMLReaderCity(String path) {
@@ -37,6 +39,7 @@ public class XMLReaderCity {
 
     /**
      * Legge i dati delle città e li inserisce nell'ArrayList
+     * Reads the cities' data and add them in the arraylist
      * @return graph
      */
     public Graph read() {
@@ -141,7 +144,9 @@ public class XMLReaderCity {
 
     /***
      * Metodo per aggiungere node all'arraylist (?)
+     * Method to add a node in an arraylist
      * @param dim, cioè la dimensione massima dell'arraylist (?)
+     *             which is the maximum dimension of the arraylist
      */
     private void initGraph(int dim) {
         for(int i=0; i < dim; i++){
