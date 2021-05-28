@@ -1,7 +1,7 @@
 package it.unibs.arnaldo.rovineperdute;
 
 /***
- * Class to contain the name of the input XML file
+ * Class to contain the String of the project
  * @author ToBdefined
  */
 public class GestoreStringhe {

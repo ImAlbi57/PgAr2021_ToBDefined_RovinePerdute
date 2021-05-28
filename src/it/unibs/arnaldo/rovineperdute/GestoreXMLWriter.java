@@ -85,7 +85,7 @@ public class GestoreXMLWriter {
      * Method used to write teams
      * It builds the structure for attributes and passes everything to writeCity method
      * @param team team to print
-     * @throws XMLStreamException
+     * @throws XMLStreamException if errors occur
      */
     private void writeTeam(Route team) throws XMLStreamException {
         ArrayList<Pair<String>> attr = Pair.buildPairs(TEAM, team.getVeicolo().getName(), COST, String.format(COST_VALUE, team.getFuel()), CITIES, ""+team.getCities());

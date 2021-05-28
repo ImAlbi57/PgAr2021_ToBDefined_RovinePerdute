@@ -3,7 +3,7 @@ package it.unibs.arnaldo.rovineperdute;
 import java.util.*;
 
 /***
- *
+ * Class to define the object Graph
  * @author ToBdefined
  */
 public class Graph {
@@ -21,8 +21,8 @@ public class Graph {
 
     //GETTERS
     /***
-     * Method to extract a node from the arraylist through an index
-     * @param index, which is the node's position in the arraylist
+     * Method to extract a node from the arraylist by the index
+     * @param index node's position in the arraylist
      * @return node
      */
     public Node getNode(int index) {
@@ -40,7 +40,7 @@ public class Graph {
 
     /***
      * Method to add a node to the arraylist
-     * @param node, which is the node to add
+     * @param node node to add
      */
     public void addNode(Node node){
         this.nodes.add(node);
@@ -67,6 +67,7 @@ public class Graph {
         distanze.put(start, 0.0);
         nodiGenitori.put(start, null);
 
+        //Finché ci sono nodiAperti
         while(!nodiAperti.isEmpty()){
             Node currNode = nodiAperti.remove();
 
@@ -82,13 +83,14 @@ public class Graph {
 
             //Scorro ogni collegamento del nodo
             for(Node link : currNode.getLinks()){
-                //Se è già contenuto nei nodi scartati passo direttamente al ciclo successivo
+                //Se è già contenuto nei nodi chiusi passo direttamente al ciclo successivo
                 if(nodiChiusi.contains(link))
                     continue;
 
                 //calcolo la distanza tra nodo corrente e nodo collegato
                 double linkDist = distanze.get(currNode) + currNode.calcDistance(mode, link);
 
+                //Se il valore della distanza non esiste (o se è migliore di un esistente) lo aggiungo
                 if(!distanze.containsKey(link) || distanze.get(link) > linkDist) {
                     distanze.put(link, linkDist);
                     nodiGenitori.put(link, currNode);
@@ -104,7 +106,7 @@ public class Graph {
 
 
     /***
-     * Method to rebuild the path starting at the arrival and then return the reversed path
+     * Method to rebuild the path starting from the end and then return the reversed path
      * @param current current node (final node)
      * @param cameFrom hashmap with the link between the nodes (parents nodes)
      * @return ArrayList<Node> containing the optimal path

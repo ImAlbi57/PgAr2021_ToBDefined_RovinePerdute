@@ -3,7 +3,7 @@ package it.unibs.arnaldo.rovineperdute;
 import java.util.ArrayList;
 
 /***
- * Class to define the object Node
+ * Class to define the object Node (implements Comparable)
  * @author ToBdefined
  */
 public class Node implements Comparable<Node> {
@@ -14,7 +14,7 @@ public class Node implements Comparable<Node> {
 
 
     /***
-     * Constructor Node
+     * Copy Constructor with new distance
      * @param node city
      * @param distance distance between the cities
      */
@@ -38,7 +38,7 @@ public class Node implements Comparable<Node> {
 
     //GETTERS
     /***
-     * get city
+     * Get city
      * @return city
      */
     public City getCity() {
@@ -82,7 +82,7 @@ public class Node implements Comparable<Node> {
 
     /***
      * Method to choose how to calculate the actual distance between the cities
-     * the choice is made on the basis of the team considered
+     * the choice is made on the basis of the navigation mode
      * @param mode navigation mode
      * @param node cities
      * @return distance

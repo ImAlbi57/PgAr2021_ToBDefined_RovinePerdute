@@ -87,9 +87,8 @@ public class MainRovine {
         System.out.println();
 
 
-        //POSSIBILE MODIFICA [Veicolo -> non abstract]
-        Route tonathiuh = new Route(new Veicolo("Tonatiuh", NavigationMode.DISTANCE));
-        Route metzetli = new Route(new Veicolo("Metztli", NavigationMode.HEIGHTDIFFERENCE));
+        Route tonathiuh = new Route(new Veicolo(TONATIUH, NavigationMode.DISTANCE));
+        Route metzetli = new Route(new Veicolo(METZTLI, NavigationMode.HEIGHTDIFFERENCE));
 
         tonathiuh.startRoute(mappa);
         metzetli.startRoute(mappa);

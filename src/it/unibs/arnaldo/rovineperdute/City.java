@@ -14,22 +14,18 @@ public class City {
 
 
     /***
-     * City constructor
-     * @param id, which is the number attributed to the city in the xml file
+     * City constructor (with id only)
+     * @param id id
      */
     public City(int id){
         this.id = id;
     }
 
     /***
-     * Costruttore di città 2
-     * City 2 constructor
-     * @param id, cioè il numero attribuito alla città nell'xml
-     *            which is the number attributed to the city in the xml-file
-     * @param nome, cioè il nome della città
-     *              which is the city's number
-     * @param coordinate, cioè la posizione della città
-     *                    which is the city's position
+     * City constructor
+     * @param id id
+     * @param nome city's name
+     * @param coordinate city's position
      */
     public City(int id, String nome, Coords coordinate) {
         this.id = id;
@@ -40,8 +36,7 @@ public class City {
 
     //GETTERS
     /***
-     * Getter di id
-     * id Getter
+     * Get id
      * @return id
      */
     public int getId() {
@@ -49,8 +44,7 @@ public class City {
     }
 
     /***
-     * Getter di nome
-     * name Getter
+     * Get name
      * @return nome
      */
     public String getNome() {
@@ -58,8 +52,7 @@ public class City {
     }
 
     /***
-     * Getter di coordinate
-     * coordinates Getter
+     * Get coordinates
      * @return coordinate
      */
     public Coords getCoordinate() {
@@ -69,8 +62,7 @@ public class City {
 
     //SETTERS
     /***
-     * Setter di id
-     * id Setter
+     * Set id
      * @param id id
      */
     public void setId(int id) {
