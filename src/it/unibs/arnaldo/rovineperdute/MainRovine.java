@@ -12,7 +12,7 @@ public class MainRovine {
     public static final String TEAM = "Team ";
     public static final String METZTLI = "Metztli";
     public static final String TONATIUH = "Tonatiuh";
-    public static final String FILE_NAME = "out.xml";
+    public static final String FILE_NAME = "Routes.xml";
 
     /***
      * Metodo main
