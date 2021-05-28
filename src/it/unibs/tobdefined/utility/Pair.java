@@ -1,6 +1,5 @@
 package it.unibs.tobdefined.utility;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Pair<T> {

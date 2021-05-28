@@ -7,9 +7,8 @@ package it.unibs.arnaldo.rovineperdute;
 public class VeicoloMetztli extends Veicolo{
 
     /***
-     * Costruttore di veicoloMetztli
-     * vehicleMetztli constructor
-     * @param name
+     * VehicleMetztli Constructor
+     * @param name vehicle's name
      */
     //costruttore
     public VeicoloMetztli(String name) {

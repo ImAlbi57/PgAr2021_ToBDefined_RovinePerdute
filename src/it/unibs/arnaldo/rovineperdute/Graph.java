@@ -12,7 +12,6 @@ public class Graph {
 
 
     /***
-     * Costruttore di Graph
      * Graph constructor
      */
     public Graph(){
@@ -22,8 +21,7 @@ public class Graph {
 
     //GETTERS
     /***
-     * Getter di nodes
-     * nodes Getter
+     * Get nodes
      * @return nodes
      */
     public ArrayList<Node> getNodes() {
@@ -31,10 +29,8 @@ public class Graph {
     }
 
     /***
-     * Metodo per ricavare un node dall'arraylist attraverso un indice
      * Method to extract a node from the arraylist through an index
-     * @param index, cioè la posizione del node nell'arraylist
-     *               which is the node's position in the arraylist
+     * @param index, which is the node's position in the arraylist
      * @return node
      */
     public Node getNode(int index) {
@@ -42,10 +38,8 @@ public class Graph {
     }
 
     /***
-     * Metodo per ricavare la lunghezza dell'arraylist
      * Method to obtain the length of the arraylist
-     * @return lunghezza
-     *         length
+     * @return length
      */
     public int getNodeNumber(){
         return nodes.size();
@@ -53,9 +47,8 @@ public class Graph {
 
 
     /***
-     * Metodo per aggiungere un node all'arraylist
      * Method to add a node to the arraylist
-     * @param node, cioè il node da aggiungere
+     * @param node, which is the node to add
      */
     public void addNode(Node node){
         this.nodes.add(node);
@@ -87,13 +80,11 @@ public class Graph {
 
 
     /***
-     * Metodo per trovare il percorso meno costoso per raggiungere le rovine perdute
      * Method to find the less expensive path in order to reach the lost ruins
-     * @param mode
-     * @param start
-     * @param target
-     * @return percorso migliore
-     *         best path
+     * @param mode navigation mode
+     * @param start city where the path starts
+     * @param target target
+     * @return best path
      */
     //Provo ad implementare A* (A-asterisco)
     public ArrayList<Node> getBestPath(NavigationMode mode, Node start, Node target){
@@ -149,14 +140,10 @@ public class Graph {
 
 
     /***
-     * Metodo che ricostruisce il percorso partendo dall'arrivo e poi ritorna il percorso "invertito"
      * Method to rebuild the path starting at the arrival and then return the reversed path
-     * @param current nodo corrente (nodo finale)
-     *                current node (final node)
-     * @param cameFrom hashmap con i link tra nodi (nodi genitori)
-     *                 hashmap with the ling between the nodes (parents nodes)
-     * @return ArrayList<Node> contenente il percorso ottimale
-     *                         containing the best path
+     * @param current current node (final node)
+     * @param cameFrom hashmap with the link between the nodes (parents nodes)
+     * @return ArrayList<Node> containing the optimal path
      */
     private static ArrayList<Node> reconstructPath(Node current, HashMap<Node, Node> cameFrom){
         ArrayList<Node> path = new ArrayList<>();

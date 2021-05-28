@@ -3,7 +3,6 @@ package it.unibs.arnaldo.rovineperdute;
 import java.util.ArrayList;
 
 /***
- * Classe per definire l'oggetto Node
  * Class to define the object Node
  * @author ToBdefined
  */
@@ -15,10 +14,9 @@ public class Node implements Comparable<Node> {
 
 
     /***
-     * Costruttore 1 di Node
-     * Constructor 1 of Node
-     * @param node
-     * @param distance
+     * Constructor Node
+     * @param node city
+     * @param distance distance between the cities
      */
     //Metodo costruttore
     public Node(Node node, double distance) {
@@ -28,9 +26,8 @@ public class Node implements Comparable<Node> {
     }
 
     /***
-     * Costruttore 2 di Node
-     * Constructor 2 of Node
-     * @param city
+     * Constructor Node
+     * @param city node
      */
     //Metodo costruttore
     public Node(City city){
@@ -41,8 +38,7 @@ public class Node implements Comparable<Node> {
 
     //GETTERS
     /***
-     * Getter di city
-     * city Getter
+     * get city
      * @return city
      */
     public City getCity() {
@@ -50,8 +46,7 @@ public class Node implements Comparable<Node> {
     }
 
     /***
-     * Getter di links
-     * links Getter
+     * Get links
      * @return links
      */
     public ArrayList<Node> getLinks(){
@@ -59,8 +54,7 @@ public class Node implements Comparable<Node> {
     }
 
     /***
-     * Getter di distance
-     * distance Getter
+     * Get distance
      * @return distance
      */
     public double getDistance() {
@@ -70,18 +64,16 @@ public class Node implements Comparable<Node> {
 
     //SETTERS
     /***
-     * Setter di city
-     * city Setter
-     * @param city
+     * Set city
+     * @param city node
      */
     public void setCity(City city) {
         this.city = city;
     }
 
     /***
-     * Setter di links
-     * links Setter
-     * @param links
+     * Set links
+     * @param links links between the cities
      */
     public void setLinks(ArrayList<Node> links) {
         this.links = links;
@@ -89,14 +81,11 @@ public class Node implements Comparable<Node> {
 
 
     /***
-     * Metodo per scegliere come calcolare l'effettiva distanza tra le città
-     * la scelta avviene sulla base del team considerato
      * Method to choose how to calculate the actual distance between the cities
      * the choice is made on the basis of the team considered
-     * @param mode
-     * @param node
-     * @return distanza
-     *         distance
+     * @param mode navigation mode
+     * @param node cities
+     * @return distance
      */
     public double calcDistance(NavigationMode mode, Node node){
         if(mode == NavigationMode.DISTANCE)
@@ -108,9 +97,9 @@ public class Node implements Comparable<Node> {
 
 
     /***
-     *
-     * @param o
-     * @return
+     * Method to verify if two objects are equal
+     * @param o object
+     * @return true if two object are equal
      */
     @Override
     public boolean equals(Object o) {
@@ -129,8 +118,8 @@ public class Node implements Comparable<Node> {
 
 
     /***
-     *
-     * @return
+     * Method that returns the id
+     * @return id
      */
     @Override
     public int hashCode() {
@@ -139,9 +128,9 @@ public class Node implements Comparable<Node> {
 
 
     /***
-     *
-     * @param o
-     * @return
+     * Method that compares nodes by distance
+     * @param o object
+     * @return 0 if equal, n > 0 if greater, n < 0 if smaller
      */
     @Override
     public int compareTo(Node o) {
@@ -150,10 +139,8 @@ public class Node implements Comparable<Node> {
 
 
     /***
-     * Metodo toString per visualizzare l'id della città e i suoi collegamenti (?)
      * Method toString to display the city's id and its links
-     * @return str, cioè la stringa con le informazioni sull' id e i link di una città
-     *         str, which is the string containing the informations about the id and the links of a city
+     * @return str, which is the string containing the information about the id and the links of a city
      */
     @Override
     public String toString() {

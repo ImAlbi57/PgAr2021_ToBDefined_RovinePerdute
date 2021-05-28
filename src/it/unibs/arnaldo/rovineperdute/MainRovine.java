@@ -15,11 +15,11 @@ public class MainRovine {
 
     /***
      * Metodo main
-     * @param args
+     * @param args args
      */
     public static void main(String[] args) {
         System.out.println(GestoreStringhe.getSALUTO());
-        int scelta = -1;
+        int scelta;
 
         do{
             scelta = InputDati.leggiInteroNonNegativo(GestoreStringhe.getMENU());
@@ -68,7 +68,7 @@ public class MainRovine {
 
     /***
      * Metodo per eseguire il programma data una mappa
-     * @param mappa_scelta
+     * @param mappa_scelta map choice
      */
     //Metodo per l'esecuzione del programma
     public static void esecuzione(String mappa_scelta){
@@ -116,7 +116,7 @@ public class MainRovine {
      * Metodo per verificare quale dei due team ha risparmiato più carburante
      * @param firstTeam, cioè Tonatiuh
      * @param secondTeam, cioè Metztli
-     * @return
+     * @return the name of the team
      */
     public static String printTeam(Route firstTeam, Route secondTeam){
         if(firstTeam.getFuel() >= secondTeam.getFuel())
