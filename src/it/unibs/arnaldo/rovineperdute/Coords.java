@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  */
 public class Coords {
 
+    public static final String REGEX = "^[-+]?[0-9]+([\\,|\\.][0-9]+)?$";
     private double x;
     private double y;
     private double h;
@@ -123,7 +124,7 @@ public class Coords {
             return false;
         //^[-+]?[0-9]+([\,|\.][0-9]+)?$ regex
         // [+-]? = possibili "+" e "-", [0-9]+ = 1+ corrispondenze, gruppo dopo il + opzionale per i decimali (con virgola o punto)
-        return Pattern.matches("^[-+]?[0-9]+([\\,|\\.][0-9]+)?$",parts[0]) && Pattern.matches("^[-+]?[0-9]+([\\,|\\.][0-9]+)?$",parts[1]) && Pattern.matches("^[-+]?[0-9]+([\\,|\\.][0-9]+)?$", parts[2]);
+        return Pattern.matches(REGEX,parts[0]) && Pattern.matches(REGEX,parts[1]) && Pattern.matches("^[-+]?[0-9]+([\\,|\\.][0-9]+)?$", parts[2]);
 
     }
 

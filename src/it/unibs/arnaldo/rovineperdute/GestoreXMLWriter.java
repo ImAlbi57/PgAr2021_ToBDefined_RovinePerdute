@@ -14,6 +14,10 @@ import java.util.ArrayList;
  */
 public class GestoreXMLWriter {
 
+    public static final String ENCODING = "utf-8";
+    public static final String ERRORE_INIZ = "Errore nell'inizializzazione del writer:";
+    public static final String INIZIO_SCRITTURA = "\nInizio scrittura della mappa per gli esploratori... ";
+    public static final String FINE_SCRITTURA = "Fine!\n\nBuon viaggio!";
     private XMLStreamWriter xmlw = null;
     private int nTabs = 0;
 
@@ -25,9 +29,9 @@ public class GestoreXMLWriter {
     public GestoreXMLWriter(String path) {
         try {
             XMLOutputFactory xmlof = XMLOutputFactory.newInstance();
-            xmlw = xmlof.createXMLStreamWriter(new FileOutputStream(path), "utf-8");
+            xmlw = xmlof.createXMLStreamWriter(new FileOutputStream(path), ENCODING);
         } catch (Exception e) {
-            System.out.println("Errore nell'inizializzazione del writer:");
+            System.out.println(ERRORE_INIZ);
             System.out.println(e.getMessage());
         }
     }
@@ -41,7 +45,7 @@ public class GestoreXMLWriter {
      */
     public void scriviXML(Route firstTeam, Route secondTeam) {
         try {
-            System.out.print("\nInizio scrittura della mappa per gli esploratori... ");
+            System.out.print(INIZIO_SCRITTURA);
             //inizio la scrittura del file XML
             iniziaXML();
             apriTag("output");
@@ -64,7 +68,7 @@ public class GestoreXMLWriter {
             chiudiTag();
             chiudiXML();
 
-            System.out.println("Fine!\n\nBuon viaggio!");
+            System.out.println(FINE_SCRITTURA);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -76,7 +80,7 @@ public class GestoreXMLWriter {
      * @throws XMLStreamException se avvengono errori
      */
     private void iniziaXML() throws XMLStreamException {
-        xmlw.writeStartDocument("utf-8", "1.0");aCapo();
+        xmlw.writeStartDocument(ENCODING, "1.0");aCapo();
     }
 
 

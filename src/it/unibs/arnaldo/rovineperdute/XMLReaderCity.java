@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class XMLReaderCity {
 
+    public static final String ERRORE_INIZ = "Errore nell'inizializzazione del reader:";
     private XMLStreamReader xmlr;
     private final String path;
     private Graph graph;
@@ -28,7 +29,7 @@ public class XMLReaderCity {
             XMLInputFactory xmlif = XMLInputFactory.newInstance();
             xmlr = xmlif.createXMLStreamReader(path, new FileInputStream(path));
         } catch (Exception e) {
-            System.out.println("Errore nell'inizializzazione del reader:");
+            System.out.println(ERRORE_INIZ);
             System.out.println(e.getMessage());
         }
     }

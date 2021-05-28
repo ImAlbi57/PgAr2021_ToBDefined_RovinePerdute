@@ -1,7 +1,6 @@
 package it.unibs.arnaldo.rovineperdute;
 
 import it.unibs.tobdefined.utility.InputDati;
-
 import java.util.ArrayList;
 
 /***
@@ -9,6 +8,10 @@ import java.util.ArrayList;
  * @author ToBdefined
  */
 public class MainRovine {
+
+    public static final String MESS_CARBURANTE = "\nIl team che ha speso meno carburante e': ";
+    public static final String METZTLI = "Team Metztli";
+    public static final String TONATIUH = "Team Tonatiuh";
 
     /***
      * Metodo main
@@ -97,7 +100,7 @@ public class MainRovine {
         GestoreXMLWriter xmlw = new GestoreXMLWriter("out.xml");
         xmlw.scriviXML(tonathiuh, metzetli);
 
-        System.out.println("\nIl team che ha speso meno carburante e': " + printTeam(tonathiuh, metzetli));
+        System.out.println(MESS_CARBURANTE + printTeam(tonathiuh, metzetli));
 
         //////  PER I BENCHMARK  //////
         BenchMark.end();
@@ -109,9 +112,9 @@ public class MainRovine {
 
     public static String printTeam(Route firstTeam, Route secondTeam){
         if(firstTeam.getFuel() >= secondTeam.getFuel())
-            return "Team Metztli";
+            return METZTLI;
 
-        else return "Team Tonatiuh";
+        else return TONATIUH;
     }
 
     /***

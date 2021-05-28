@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class Route {
 
+    public static final String MESS_ROTTA = "Team %s: calcolo la rotta... ";
+    public static final String MESS_PARTENZA = "Pronti per la partenza!";
     private final Veicolo veicolo;
     private ArrayList<Node> path;
     private int cities;
@@ -63,10 +65,10 @@ public class Route {
      */
     //Metodo per calcolare la rotta
     public void startRoute(Graph mappa){
-        System.out.printf("Team %s: calcolo la rotta... ", veicolo.getName());
+        System.out.printf(MESS_ROTTA, veicolo.getName());
         this.path = mappa.getBestPath(veicolo.getMode(), mappa.getNode(0), mappa.getNode(mappa.getNodeNumber()-1));
         this.cities = path.size();
         this.veicolo.setCarburante(path.get(this.cities-1).getDistance());
-        System.out.println("Pronti per la partenza!");
+        System.out.println(MESS_PARTENZA);
     }
 }
